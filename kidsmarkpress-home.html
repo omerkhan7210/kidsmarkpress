@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KidsMark Press — Independent Publisher. Every Story Needs a Believer.</title>
+<meta name="description" content="KidsMark Press is an independent publishing house dedicated to encouraging first-time authors and honoring the mentors who believed in them. Explore our books, recognize a mentor, and become part of the story."/>
+<meta property="og:title" content="KidsMark Press — Where Every Story Starts With Someone Who Believed"/>
+<meta property="og:description" content="Independent publisher celebrating new authors and the mentors behind every great story."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --G:#1a3d28;--G2:#24563a;--G3:#2f6e4a;--Gp:#e6f0eb;--Gpp:#f0f6f2;
+  --A:#c4871e;--A2:#e09f2a;--Ap:#fdf3e3;
+  --C:#faf6ef;--C2:#f2ece0;--C3:#e8dfc8;
+  --INK:#141416;--INK2:#3a3a3e;--INK3:#6e6e78;--INK4:#a8a8b4;
+  --W:#ffffff;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
+  --max:1240px;
+  --pad:clamp(18px,4vw,56px);
+  --r:2px;
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--sans);background:var(--C);color:var(--INK);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block;object-fit:cover}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;font-family:var(--sans);font-size:13.5px;font-weight:500;letter-spacing:.05em;cursor:pointer;transition:all .22s cubic-bezier(.4,0,.2,1);border:none;text-decoration:none;white-space:nowrap}
+.btn svg{transition:transform .22s ease;flex-shrink:0}
+.btn:hover svg{transform:translateX(4px)}
+.btn-amber{background:var(--A);color:var(--W);border-radius:var(--r)}
+.btn-amber:hover{background:#a8711a;transform:translateY(-1px);box-shadow:0 8px 24px rgba(196,135,30,.3)}
+.btn-green{background:var(--G);color:var(--W);border-radius:var(--r)}
+.btn-green:hover{background:var(--G2);transform:translateY(-1px)}
+.btn-outline-white{background:transparent;color:var(--W);border:1.5px solid rgba(255,255,255,.45);border-radius:var(--r)}
+.btn-outline-white:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.75)}
+.btn-outline-green{background:transparent;color:var(--G);border:1.5px solid var(--G);border-radius:var(--r)}
+.btn-outline-green:hover{background:var(--G);color:var(--W)}
+.btn-text{background:transparent;color:var(--G);padding:0;font-size:14px;font-weight:500;letter-spacing:.04em;gap:6px}
+.btn-text:hover{color:var(--A)}
+
+/* EYEBROW */
+.ey{font-family:var(--sans);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;display:flex;align-items:center;gap:10px}
+.ey::before{content:'';display:block;width:28px;height:1px;background:currentColor;opacity:.5;flex-shrink:0}
+.ey-green{color:var(--G2)}
+.ey-amber{color:var(--A)}
+.ey-white{color:rgba(255,255,255,.6)}
+.ey-muted{color:var(--INK4)}
+
+/* TAGS */
+.tag{display:inline-block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;font-weight:500;border-radius:var(--r)}
+.tag-g{background:var(--Gp);color:var(--G2)}
+.tag-a{background:var(--Ap);color:#8f5d0e}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NAV
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;transition:background .3s,box-shadow .3s}
+.nav.bg{background:rgba(20,46,30,.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.nav-i{display:flex;align-items:center;height:68px;gap:32px}
+.nav-logo{font-family:var(--serif);font-size:21px;font-weight:500;color:var(--W);letter-spacing:.02em;flex-shrink:0;margin-right:auto}
+.nav-logo b{color:var(--A2);font-weight:600}
+.nl{display:flex;list-style:none;gap:28px}
+.nl a{font-size:13.5px;font-weight:400;color:rgba(255,255,255,.72);transition:color .2s;letter-spacing:.02em}
+.nl a:hover{color:var(--W)}
+.nav-cta .btn{padding:9px 20px;font-size:13px}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;margin-left:auto}
+.hbg span{display:block;width:20px;height:1.5px;background:var(--W);transition:.3s}
+.mob-menu{display:none;position:fixed;inset:68px 0 0;background:rgba(20,46,30,.98);z-index:190;flex-direction:column;padding:28px var(--pad);gap:0;backdrop-filter:blur(16px)}
+.mob-menu.on{display:flex}
+.mob-menu a{display:block;padding:15px 0;font-size:17px;color:rgba(255,255,255,.8);border-bottom:1px solid rgba(255,255,255,.08)}
+.mob-menu .btn{margin-top:24px;width:100%;justify-content:center}
+@media(max-width:768px){.nl,.nav-cta{display:none}.hbg{display:flex}}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO — Full cinematic
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.hero{position:relative;height:100vh;min-height:680px;display:flex;flex-direction:column;overflow:hidden;background:var(--G)}
+.hero-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1800&q=80') center/cover no-repeat;opacity:.28;transform:scale(1.04);animation:heroScale 8s ease forwards}
+@keyframes heroScale{to{transform:scale(1);opacity:.22}}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(160deg,rgba(16,36,22,.95) 0%,rgba(22,52,34,.78) 55%,rgba(28,64,42,.6) 100%)}
+.hero-grain{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px}
+.hero-content{position:relative;z-index:2;flex:1;display:flex;align-items:center;padding-top:68px}
+.hero-inner{max-width:820px}
+.hero-flag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:6px 14px 6px 8px;margin-bottom:32px;animation:fadeUp .6s ease both}
+.hero-flag-dot{width:7px;height:7px;border-radius:50%;background:var(--A2);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-flag span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65);font-weight:400}
+.hero h1{font-family:var(--serif);font-size:clamp(44px,7vw,88px);font-weight:300;line-height:1.05;color:var(--W);letter-spacing:-.02em;margin-bottom:28px;animation:fadeUp .7s .1s ease both}
+.hero h1 em{font-style:italic;color:var(--A2);display:block}
+.hero-sub{font-size:clamp(15px,1.8vw,18px);color:rgba(255,255,255,.65);line-height:1.75;max-width:520px;margin-bottom:44px;font-weight:300;animation:fadeUp .7s .2s ease both}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;animation:fadeUp .7s .3s ease both}
+.hero-scroll{position:relative;z-index:2;padding:28px 0;border-top:1px solid rgba(255,255,255,.08)}
+.hero-stats-row{display:flex;gap:0;flex-wrap:wrap}
+.h-stat{flex:1;min-width:120px;padding:0 32px;border-right:1px solid rgba(255,255,255,.1);animation:fadeUp .7s ease both}
+.h-stat:first-child{padding-left:0}
+.h-stat:last-child{border-right:none}
+.h-stat-n{font-family:var(--serif);font-size:38px;font-weight:400;color:var(--A2);line-height:1;display:block}
+.h-stat-l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:6px;display:block;font-weight:400}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MARQUEE RIBBON
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.marquee-wrap{background:var(--A);overflow:hidden;padding:14px 0;display:flex}
+.marquee-track{display:flex;gap:0;animation:marquee 30s linear infinite;white-space:nowrap;flex-shrink:0}
+.marquee-track span{font-family:var(--serif);font-size:17px;font-style:italic;font-weight:400;color:rgba(255,255,255,.9);padding:0 32px;display:inline-flex;align-items:center;gap:16px}
+.marquee-track span::after{content:'✦';font-size:10px;opacity:.6;font-style:normal}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MISSION / BRAND STORY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.mission{padding:120px 0;background:var(--W)}
+.mission-inner{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.mission-text{}
+.mission-text h2{font-family:var(--serif);font-size:clamp(32px,4vw,54px);font-weight:300;line-height:1.15;color:var(--INK);margin-bottom:28px;letter-spacing:-.01em}
+.mission-text h2 strong{font-weight:500;color:var(--G)}
+.mission-text p{font-size:16px;color:var(--INK2);line-height:1.85;margin-bottom:18px}
+.mission-text p:last-of-type{margin-bottom:32px}
+.mission-visual{position:relative}
+.mission-img-stack{position:relative;padding:24px 0 24px 24px}
+.mission-img1{width:100%;max-width:380px;aspect-ratio:3/4;border-radius:var(--r);box-shadow:0 32px 64px rgba(0,0,0,.14)}
+.mission-img2{position:absolute;bottom:-28px;left:-20px;width:180px;height:220px;border-radius:var(--r);border:6px solid var(--W);box-shadow:0 16px 40px rgba(0,0,0,.16)}
+.mission-accent{position:absolute;top:8px;right:-8px;width:120px;height:120px;background:var(--Ap);border:2px solid var(--A);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px}
+.mission-accent-n{font-family:var(--serif);font-size:34px;font-weight:500;color:var(--A);line-height:1}
+.mission-accent-l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--A);margin-top:4px;font-weight:500}
+.mission-pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;margin-top:48px;background:var(--C3)}
+.mp{background:var(--W);padding:24px 20px;text-align:center}
+.mp-icon{width:36px;height:36px;background:var(--Gp);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.mp h4{font-family:var(--serif);font-size:18px;font-weight:500;color:var(--INK);margin-bottom:6px}
+.mp p{font-size:13px;color:var(--INK3);line-height:1.6}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   THREE AUDIENCES — Tabbed
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.audiences{padding:0 0 120px;background:var(--W)}
+.aud-tabs{display:flex;border-bottom:2px solid var(--C3);margin-bottom:56px}
+.aud-tab{flex:1;padding:20px 24px;font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--INK3);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;text-align:center}
+.aud-tab.active{color:var(--G);border-bottom-color:var(--G)}
+.aud-panel{display:none;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.aud-panel.active{display:grid}
+.aud-text h3{font-family:var(--serif);font-size:clamp(26px,3vw,42px);font-weight:400;line-height:1.2;color:var(--INK);margin-bottom:16px}
+.aud-text h3 em{font-style:italic;color:var(--G)}
+.aud-text p{font-size:15.5px;color:var(--INK2);line-height:1.8;margin-bottom:14px}
+.aud-features{list-style:none;margin:20px 0 32px;display:flex;flex-direction:column;gap:12px}
+.aud-features li{display:flex;align-items:flex-start;gap:12px;font-size:14.5px;color:var(--INK2)}
+.aud-features li::before{content:'';width:20px;height:20px;border-radius:50%;background:var(--Gp);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;background-image:url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%232f6e4a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+.aud-img{position:relative}
+.aud-img img{width:100%;aspect-ratio:4/5;border-radius:var(--r);object-fit:cover}
+.aud-img-badge{position:absolute;bottom:20px;left:-16px;background:var(--G);color:var(--W);padding:16px 20px;border-radius:var(--r);max-width:200px}
+.aud-img-badge p{font-family:var(--serif);font-size:16px;font-style:italic;font-weight:400;line-height:1.4;color:rgba(255,255,255,.9)}
+.aud-img-badge span{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase;margin-top:6px;display:block}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FEATURED BOOK — Bold asymmetric
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.feat-book{background:var(--C);padding:0;overflow:hidden;position:relative}
+.feat-book-bg{position:absolute;left:0;top:0;bottom:0;width:45%;background:var(--G)}
+.feat-book-inner{display:grid;grid-template-columns:45% 55%;min-height:580px;position:relative;z-index:1}
+.feat-book-left{display:flex;align-items:center;justify-content:center;padding:80px var(--pad) 80px 0;position:relative}
+.feat-book-right{padding:80px 0 80px var(--pad)}
+.book-float{position:relative;display:inline-block}
+.book-shadow{width:280px;height:380px;border-radius:3px;box-shadow:-24px 24px 60px rgba(0,0,0,.35),6px -6px 0 rgba(196,135,30,.6)}
+.book-badge2{position:absolute;top:-14px;right:-14px;background:var(--A);color:var(--W);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;font-weight:600}
+.fb-heading{font-family:var(--serif);font-size:clamp(30px,3.5vw,48px);font-weight:400;line-height:1.15;color:var(--INK);margin:16px 0 8px;letter-spacing:-.01em}
+.fb-author{font-size:14px;color:var(--INK3);margin-bottom:6px;letter-spacing:.04em}
+.fb-author b{color:var(--G);font-weight:500}
+.fb-isbn{font-size:11.5px;color:var(--INK4);letter-spacing:.08em;margin-bottom:20px}
+.fb-desc{font-size:15.5px;color:var(--INK2);line-height:1.8;margin-bottom:28px;border-left:3px solid var(--A);padding-left:18px}
+.fb-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FEATURED AUTHOR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.feat-author{padding:120px 0;background:var(--Gpp)}
+.fa-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+.fa-left{}
+.fa-right{}
+.fa-img-wrap{position:relative;display:inline-block;width:100%}
+.fa-photo{width:100%;max-width:420px;aspect-ratio:3/4;border-radius:var(--r)}
+.fa-quote-card{position:absolute;bottom:-24px;right:-24px;background:var(--A);padding:24px 28px;max-width:240px;border-radius:var(--r)}
+.fa-quote-card p{font-family:var(--serif);font-size:16px;font-style:italic;color:rgba(255,255,255,.95);line-height:1.5;margin-bottom:8px}
+.fa-quote-card span{font-size:11px;color:rgba(255,255,255,.55);letter-spacing:.1em;text-transform:uppercase}
+.fa-right h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:400;line-height:1.15;color:var(--INK);margin:12px 0 20px}
+.fa-right p{font-size:15.5px;color:var(--INK2);line-height:1.85;margin-bottom:14px}
+.fa-meta{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 28px}
+.fa-books{margin-bottom:32px}
+.fa-books-label{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--INK4);font-weight:500;margin-bottom:12px}
+.fa-book-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:var(--W);border:1px solid var(--C3);border-radius:var(--r);font-size:13px;color:var(--INK2);margin-right:8px}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MENTOR WALL — Immersive
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.mentor{background:var(--G);padding:120px 0;position:relative;overflow:hidden}
+.mentor-bg-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1600&q=60') center/cover;opacity:.07}
+.mentor-inner{position:relative;z-index:1}
+.mentor-hd{text-align:center;margin-bottom:72px}
+.mentor-hd h2{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:300;color:var(--W);line-height:1.1;margin:12px 0 20px;letter-spacing:-.02em}
+.mentor-hd h2 em{font-style:italic;color:var(--A2)}
+.mentor-hd p{font-size:16px;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto;line-height:1.7;font-weight:300}
+.mentor-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px}
+.mc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:32px;position:relative;transition:all .3s ease;cursor:pointer;border-radius:var(--r)}
+.mc:hover{background:rgba(255,255,255,.09);transform:translateY(-4px);border-color:rgba(255,255,255,.2)}
+.mc-accent{position:absolute;top:0;left:0;right:0;height:3px;background:var(--A)}
+.mc-qmark{font-family:var(--serif);font-size:56px;font-weight:400;color:var(--A2);opacity:.4;line-height:.9;margin-bottom:12px;font-style:italic}
+.mc p{font-family:var(--serif);font-size:17px;font-style:italic;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:24px;font-weight:300}
+.mc-person{display:flex;align-items:center;gap:14px}
+.mc-avatar{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.2);overflow:hidden;flex-shrink:0}
+.mc-avatar img{width:100%;height:100%}
+.mc-name{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--W)}
+.mc-sub{font-size:11.5px;color:rgba(255,255,255,.45);letter-spacing:.06em;margin-top:2px}
+.mc-share{position:absolute;top:20px;right:20px;opacity:0;transition:opacity .2s}
+.mc:hover .mc-share{opacity:1}
+.mc-share-btn{background:rgba(255,255,255,.1);border:none;padding:6px 10px;color:rgba(255,255,255,.7);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);border-radius:var(--r)}
+.mentor-ctas{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HOW IT WORKS — Process
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.process{padding:120px 0;background:var(--C2)}
+.process-hd{text-align:center;max-width:560px;margin:0 auto 72px}
+.process-hd h2{font-family:var(--serif);font-size:clamp(30px,4vw,50px);font-weight:400;color:var(--INK);line-height:1.2;margin-bottom:16px}
+.process-hd p{font-size:15.5px;color:var(--INK3);line-height:1.7}
+.proc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-bottom:64px}
+.proc-steps::before{content:'';position:absolute;top:36px;left:12.5%;right:12.5%;height:1px;background:var(--C3)}
+.ps{text-align:center;padding:0 24px;position:relative}
+.ps-num{width:72px;height:72px;border-radius:50%;background:var(--G);color:var(--W);font-family:var(--serif);font-size:28px;font-weight:400;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;z-index:1}
+.ps-num.active-step{background:var(--A)}
+.ps h4{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--INK);margin-bottom:8px}
+.ps p{font-size:13.5px;color:var(--INK3);line-height:1.6}
+.process-cta{text-align:center}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   LATEST FROM BLOG
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.blog-sec{padding:120px 0;background:var(--W)}
+.blog-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;gap:24px;flex-wrap:wrap}
+.blog-hd h2{font-family:var(--serif);font-size:clamp(28px,4vw,48px);font-weight:400;color:var(--INK);line-height:1.2;letter-spacing:-.01em;max-width:400px}
+.blog-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px}
+.bc{position:relative;overflow:hidden;cursor:pointer}
+.bc:hover .bc-img img{transform:scale(1.04)}
+.bc-img{overflow:hidden;border-radius:var(--r);margin-bottom:20px}
+.bc-img img{width:100%;transition:transform .5s ease}
+.bc-img.tall{aspect-ratio:3/4}
+.bc-img.wide{aspect-ratio:16/10}
+.bc-cat{margin-bottom:10px}
+.bc h3{font-family:var(--serif);font-size:clamp(17px,2vw,22px);font-weight:400;color:var(--INK);line-height:1.35;margin-bottom:8px}
+.bc:hover h3{color:var(--G)}
+.bc-meta{font-size:12px;color:var(--INK4);letter-spacing:.06em}
+.bc-excerpt{font-size:14px;color:var(--INK3);line-height:1.65;margin-top:8px}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SUBMIT — For Authors CTA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.author-cta{position:relative;overflow:hidden;padding:100px 0}
+.author-cta-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1600&q=70') center/cover;filter:brightness(.32) saturate(1.2)}
+.author-cta-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(15,34,22,.9) 40%,rgba(15,34,22,.5))}
+.author-cta-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.act-left h2{font-family:var(--serif);font-size:clamp(32px,4vw,56px);font-weight:300;color:var(--W);line-height:1.15;margin-bottom:20px;letter-spacing:-.01em}
+.act-left h2 em{font-style:italic;color:var(--A2)}
+.act-left p{font-size:16px;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:32px;font-weight:300}
+.act-right{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:36px 40px;border-radius:var(--r)}
+.act-right h3{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--W);margin-bottom:20px}
+.act-checklist{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:10px}
+.act-checklist li{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.75)}
+.act-checklist li::before{content:'✓';width:18px;height:18px;background:rgba(196,135,30,.3);border:1px solid var(--A);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--A2);flex-shrink:0;font-weight:600}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NEWSLETTER — Full width split
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.nl-sec{display:grid;grid-template-columns:1fr 1fr;min-height:280px}
+.nl-left{background:var(--G);padding:64px var(--pad) 64px calc((100vw - var(--max)) / 2 + var(--pad));display:flex;flex-direction:column;justify-content:center}
+.nl-left h2{font-family:var(--serif);font-size:clamp(24px,3vw,38px);font-weight:400;color:var(--W);line-height:1.25;margin-bottom:10px}
+.nl-left p{font-size:14.5px;color:rgba(255,255,255,.55);line-height:1.6}
+.nl-right{background:var(--Ap);padding:64px calc((100vw - var(--max)) / 2 + var(--pad)) 64px var(--pad);display:flex;flex-direction:column;justify-content:center}
+.nl-form{display:flex;flex-direction:column;gap:12px;max-width:400px}
+.nl-form input{padding:14px 18px;border:1.5px solid rgba(0,0,0,.12);background:var(--W);font-family:var(--sans);font-size:15px;color:var(--INK);outline:none;border-radius:var(--r);transition:border-color .2s}
+.nl-form input:focus{border-color:var(--G)}
+.nl-form input::placeholder{color:var(--INK4)}
+.nl-note{font-size:12px;color:var(--INK4);margin-top:4px}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+footer{background:#0e2018;padding:72px 0 0}
+.ft-inner{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.07)}
+.ft-logo{font-family:var(--serif);font-size:23px;font-weight:500;color:var(--W);margin-bottom:14px}
+.ft-logo b{color:var(--A2);font-weight:600}
+.ft-tagline{font-size:13.5px;color:rgba(255,255,255,.38);line-height:1.65;max-width:260px;margin-bottom:24px}
+.ft-social{display:flex;gap:8px}
+.ft-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.45);font-size:14px;transition:all .2s}
+.ft-social a:hover{border-color:var(--A);color:var(--A)}
+.ft-col h5{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);font-weight:500;margin-bottom:18px}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-links a{font-size:13.5px;color:rgba(255,255,255,.55);transition:color .2s}
+.ft-links a:hover{color:var(--A)}
+.ft-bottom{display:flex;align-items:center;justify-content:space-between;padding:20px 0;flex-wrap:wrap;gap:12px}
+.ft-copy{font-size:12px;color:rgba(255,255,255,.25)}
+.ft-legal{display:flex;gap:20px}
+.ft-legal a{font-size:12px;color:rgba(255,255,255,.25);transition:color .2s}
+.ft-legal a:hover{color:rgba(255,255,255,.55)}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SCROLL ANIMATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.vis{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.vis{opacity:1;transform:translateX(0)}
+.reveal-delay-1{transition-delay:.12s}
+.reveal-delay-2{transition-delay:.24s}
+.reveal-delay-3{transition-delay:.36s}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media(max-width:1024px){
+  .mission-inner,.fa-inner{grid-template-columns:1fr;gap:56px}
+  .aud-panel.active{grid-template-columns:1fr}
+  .feat-book-bg{display:none}
+  .feat-book-inner{grid-template-columns:1fr}
+  .feat-book-left{padding:56px var(--pad)}
+  .feat-book-right{padding:0 var(--pad) 64px}
+  .mentor-cards{grid-template-columns:1fr 1fr}
+  .proc-steps{grid-template-columns:1fr 1fr;gap:40px}
+  .proc-steps::before{display:none}
+  .blog-grid{grid-template-columns:1fr 1fr}
+  .blog-grid .bc:first-child{grid-column:1/-1}
+  .blog-grid .bc:first-child .bc-img.tall{aspect-ratio:16/7}
+  .author-cta-inner{grid-template-columns:1fr}
+  .nl-sec{grid-template-columns:1fr}
+  .nl-left,.nl-right{padding:52px var(--pad)}
+  .ft-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .hero h1{font-size:clamp(38px,9vw,58px)}
+  .h-stat{min-width:50%;padding:12px 20px;border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
+  .mission-pillars{grid-template-columns:1fr}
+  .aud-tab{font-size:12px;padding:14px 8px}
+  .mentor-cards{grid-template-columns:1fr}
+  .proc-steps{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:1fr}
+  .blog-grid .bc:first-child{grid-column:auto}
+  .blog-grid .bc:first-child .bc-img.tall{aspect-ratio:16/9}
+  .ft-inner{grid-template-columns:1fr}
+  .ft-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+  <nav class="nav" id="nav">
+    <div class="wrap">
+      <div class="nav-i">
+        <a href="/" class="nav-logo" aria-label="KidsMark Press home">Kids<b>Mark</b> Press</a>
+        <ul class="nl" role="list">
+          <li><a href="/books/">Books</a></li>
+          <li><a href="/authors/">Authors</a></li>
+          <li><a href="/mentor-wall/">Mentor Wall</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="/mentor-wall/recognize/" class="btn btn-amber">
+            Recognize a Mentor
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <button class="hbg" id="hbg" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mob-menu" id="mobMenu">
+    <a href="/books/">Books</a>
+    <a href="/authors/">Authors</a>
+    <a href="/mentor-wall/">Mentor Wall</a>
+    <a href="/blog/">Blog</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/mentor-wall/recognize/" class="btn btn-amber" style="justify-content:center">Recognize a Mentor</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ════════════════════════
+     HERO
+════════════════════════ -->
+<section class="hero" aria-labelledby="hero-h1">
+  <div class="hero-img" aria-hidden="true"></div>
+  <div class="hero-grad" aria-hidden="true"></div>
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="wrap">
+      <div class="hero-inner">
+        <div class="hero-flag">
+          <span class="hero-flag-dot" aria-hidden="true"></span>
+          <span>Independent Publishing House · Est. 2020</span>
+        </div>
+        <h1 id="hero-h1">
+          Where voices<br/>find their page.
+          <em>Where stories find their believer.</em>
+        </h1>
+        <p class="hero-sub">KidsMark Press champions first-time authors — and honors the teachers, librarians, parents, and strangers who told them their words mattered. We don't just publish books. We celebrate the whole story.</p>
+        <div class="hero-btns">
+          <a href="/books/" class="btn btn-amber">
+            Explore Our Books
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="/mentor-wall/recognize/" class="btn btn-outline-white">Recognize a Mentor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="wrap">
+      <div class="hero-stats-row">
+        <div class="h-stat" style="animation-delay:.4s">
+          <span class="h-stat-n">48+</span>
+          <span class="h-stat-l">Published Titles</span>
+        </div>
+        <div class="h-stat" style="animation-delay:.5s">
+          <span class="h-stat-n">120</span>
+          <span class="h-stat-l">Authors Supported</span>
+        </div>
+        <div class="h-stat" style="animation-delay:.6s">
+          <span class="h-stat-n">340+</span>
+          <span class="h-stat-l">Mentor Tributes</span>
+        </div>
+        <div class="h-stat" style="animation-delay:.7s">
+          <span class="h-stat-n">32</span>
+          <span class="h-stat-l">States Represented</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     MARQUEE
+════════════════════════ -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Encouraging New Voices</span><span>Celebrating Mentors</span><span>Building Author Journeys</span><span>Independent Publishing</span><span>Stories Worth Telling</span><span>Honoring the Believers</span><span>Books That Begin With Trust</span><span>The Mentor Wall</span><span>Encouraging New Voices</span><span>Celebrating Mentors</span><span>Building Author Journeys</span><span>Independent Publishing</span><span>Stories Worth Telling</span><span>Honoring the Believers</span><span>Books That Begin With Trust</span><span>The Mentor Wall</span>
+  </div>
+</div>
+
+<!-- ════════════════════════
+     BRAND STORY / MISSION
+════════════════════════ -->
+<section class="mission" aria-labelledby="mission-h2">
+  <div class="wrap">
+    <div class="mission-inner">
+      <div class="mission-text reveal-left">
+        <p class="ey ey-green" style="margin-bottom:16px">Our Story</p>
+        <h2 id="mission-h2">We believe <strong>every author deserves a first chance</strong> — and every mentor deserves to be remembered.</h2>
+        <p>KidsMark Press was born from a simple truth: the publishing world is harder to enter than it should be. Too many talented voices go unheard — not because their stories aren't worth telling, but because no one handed them the door.</p>
+        <p>We exist to hand them the door. And to celebrate the people who told them to knock on it in the first place.</p>
+        <p>Our Mentor Wall isn't a feature. It's our foundation. It's the public record of every teacher who stayed late, every librarian who slipped a book into the right hands, every parent who said "keep going" when everything else said stop.</p>
+        <a href="/about/" class="btn btn-outline-green">
+          Read Our Full Story
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <div class="mission-pillars reveal" style="transition-delay:.2s">
+          <div class="mp">
+            <div class="mp-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2f6e4a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h4>Readers</h4>
+            <p>Discover books with real heart behind them — stories from authors who earned their place.</p>
+          </div>
+          <div class="mp">
+            <div class="mp-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2f6e4a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <h4>Authors</h4>
+            <p>Submit your manuscript. Get real consideration. Find your publisher.</p>
+          </div>
+          <div class="mp">
+            <div class="mp-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2f6e4a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h4>Mentors</h4>
+            <p>Recognize the person who changed someone's life. They deserve to be remembered.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mission-visual reveal-right">
+        <div class="mission-img-stack">
+          <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&q=85" alt="Author writing at a desk — the craft behind every KidsMark Press story" class="mission-img1" width="380" height="507" loading="lazy"/>
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=280&q=80" alt="A mentor and student sharing a book together" class="mission-img2" width="180" height="220" loading="lazy"/>
+          <div class="mission-accent" aria-hidden="true">
+            <span class="mission-accent-n">12+</span>
+            <span class="mission-accent-l">Awards Won</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     THREE AUDIENCES
+════════════════════════ -->
+<section class="audiences" aria-labelledby="aud-heading">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:52px" class="reveal">
+      <p class="ey ey-green" style="justify-content:center;margin-bottom:14px">Who We Serve</p>
+      <h2 id="aud-heading" style="font-family:var(--serif);font-size:clamp(28px,4vw,48px);font-weight:400;color:var(--INK);line-height:1.2">KidsMarkPress.com is built for three communities.</h2>
+    </div>
+    <div class="aud-tabs" role="tablist" aria-label="Audience sections">
+      <button class="aud-tab active" role="tab" aria-selected="true" aria-controls="tab-readers" id="btn-readers">For Readers</button>
+      <button class="aud-tab" role="tab" aria-selected="false" aria-controls="tab-authors" id="btn-authors">For Authors</button>
+      <button class="aud-tab" role="tab" aria-selected="false" aria-controls="tab-mentors" id="btn-mentors">For Mentors &amp; Mentees</button>
+    </div>
+    <div class="aud-panel active" id="tab-readers" role="tabpanel" aria-labelledby="btn-readers">
+      <div class="aud-text">
+        <p class="ey ey-muted" style="margin-bottom:14px">Discover</p>
+        <h3>Find books with a <em>real story</em> behind the story.</h3>
+        <p>Every book in our catalog came from an author who fought for it. Browse by title, author, category, or genre. Read about the person who wrote it — and the mentor who made it possible.</p>
+        <ul class="aud-features">
+          <li>Searchable book catalog with cover, synopsis, author &amp; purchase links</li>
+          <li>Author profiles with biography, social links &amp; full bibliography</li>
+          <li>The Mentor Wall — read the tributes that inspired the authors you love</li>
+          <li>Blog &amp; news — book launches, author stories, press releases</li>
+        </ul>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="/books/" class="btn btn-green">Browse All Books <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="/authors/" class="btn btn-outline-green">Meet Our Authors</a>
+        </div>
+      </div>
+      <div class="aud-img">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=560&q=85" alt="A reader enjoying a KidsMark Press book" width="560" height="700" loading="lazy"/>
+        <div class="aud-img-badge">
+          <p>"I didn't just buy a book. I bought someone's whole journey."</p>
+          <span>KidsMark Reader</span>
+        </div>
+      </div>
+    </div>
+    <div class="aud-panel" id="tab-authors" role="tabpanel" aria-labelledby="btn-authors">
+      <div class="aud-text">
+        <p class="ey ey-muted" style="margin-bottom:14px">Get Published</p>
+        <h3>We're looking for <em>first voices</em>, not just famous names.</h3>
+        <p>KidsMark Press was built for the author who doesn't know where to start. Submit your manuscript, your bio, and your book proposal — our editorial team reviews every submission. No gatekeeping. No agents required.</p>
+        <ul class="aud-features">
+          <li>Direct manuscript submission portal — no agent needed</li>
+          <li>Author profile in our searchable directory after publication</li>
+          <li>Your books listed in our searchable catalog with purchase links</li>
+          <li>Be featured in our Author Spotlight on the homepage</li>
+        </ul>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="/submit/" class="btn btn-green">Submit Your Manuscript <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="/authors/" class="btn btn-outline-green">Meet Published Authors</a>
+        </div>
+      </div>
+      <div class="aud-img">
+        <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=560&q=85" alt="An author writing their manuscript for KidsMark Press submission" width="560" height="700" loading="lazy"/>
+        <div class="aud-img-badge">
+          <p>"They took a chance on me before anyone else would."</p>
+          <span>KidsMark Author</span>
+        </div>
+      </div>
+    </div>
+    <div class="aud-panel" id="tab-mentors" role="tabpanel" aria-labelledby="btn-mentors">
+      <div class="aud-text">
+        <p class="ey ey-muted" style="margin-bottom:14px">Give Credit</p>
+        <h3>The mentor <em>nobody thanked publicly.</em> Until now.</h3>
+        <p>The Mentor Wall is a public tribute platform where anyone can recognize a person who changed their direction. Submit a tribute, include a photo, and share their story with the world. Every approved tribute gets its own shareable page.</p>
+        <ul class="aud-features">
+          <li>Submit a tribute — mentor name, photo, city, your message</li>
+          <li>Search &amp; browse all approved mentor tributes</li>
+          <li>Each mentor gets a shareable tribute page — send it to them</li>
+          <li>Create a Mentee profile to connect with the community</li>
+        </ul>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="/mentor-wall/recognize/" class="btn btn-amber">Recognize a Mentor <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="/mentor-wall/" class="btn btn-outline-green">Browse the Mentor Wall</a>
+        </div>
+      </div>
+      <div class="aud-img">
+        <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=560&q=85" alt="A mentor and student — the relationship at the heart of KidsMark Press" width="560" height="700" loading="lazy"/>
+        <div class="aud-img-badge">
+          <p>"She doesn't know her tribute went live. I can't wait to show her."</p>
+          <span>Mentee, Austin TX</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     FEATURED BOOK
+════════════════════════ -->
+<section class="feat-book" aria-labelledby="fb-heading">
+  <div class="feat-book-bg" aria-hidden="true"></div>
+  <div class="feat-book-inner">
+    <div class="feat-book-left reveal">
+      <div class="book-float">
+        <span class="book-badge2">Editor's Pick</span>
+        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=480&q=85" alt="The Quiet Compass by Maria Elena Reyes — featured book from KidsMark Press" class="book-shadow" width="280" height="380" loading="lazy" style="border-radius:3px"/>
+      </div>
+    </div>
+    <div class="feat-book-right reveal-right">
+      <p class="ey ey-muted" style="margin-bottom:16px">Featured Book</p>
+      <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+        <span class="tag tag-g">Middle Grade Fiction</span>
+        <span class="tag tag-a">March 2024</span>
+      </div>
+      <h2 class="fb-heading" id="fb-heading">The Quiet Compass</h2>
+      <p class="fb-author">By <b>Maria Elena Reyes</b></p>
+      <p class="fb-isbn">ISBN: 978-0-000000-00-0 · Ages 9–13 · 224 pages</p>
+      <p class="fb-desc">Twelve-year-old Sofia has always known exactly where she's going — until the day she doesn't. A tender, quietly devastating debut about finding direction when the person you always followed is no longer there to lead. The book Maria Elena's fifth-grade teacher always told her she had in her.</p>
+      <div class="fb-actions">
+        <a href="/books/the-quiet-compass/" class="btn btn-amber">Get This Book <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="/books/" class="btn btn-outline-green">Browse All Books</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     FEATURED AUTHOR
+════════════════════════ -->
+<section class="feat-author" aria-labelledby="fa-heading">
+  <div class="wrap">
+    <div class="fa-inner">
+      <div class="fa-left reveal-left">
+        <div class="fa-img-wrap">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=560&q=85" alt="Maria Elena Reyes, author at KidsMark Press" class="fa-photo" width="420" height="560" loading="lazy"/>
+          <div class="fa-quote-card">
+            <p>"Mrs. Delgado slipped a blank journal onto my desk. That was the whole reason."</p>
+            <span>Maria Elena Reyes</span>
+          </div>
+        </div>
+      </div>
+      <div class="fa-right reveal-right">
+        <p class="ey ey-green" style="margin-bottom:16px">Author Spotlight</p>
+        <div class="fa-meta">
+          <span class="tag tag-g">Middle Grade</span>
+          <span class="tag tag-g">Texas</span>
+          <span class="tag tag-a">Debut Author</span>
+        </div>
+        <h2 id="fa-heading">Maria Elena Reyes</h2>
+        <p>Maria Elena grew up in San Antonio, the daughter of two teachers who believed that books were not extras — they were necessities. In fifth grade, her teacher Mrs. Delgado quietly placed a blank journal on her desk with a note that read: <em>"You have something worth saying."</em></p>
+        <p>Twenty years later, still carrying that journal, she finished her debut novel. She is now a former school librarian, a first-generation college graduate, and a mentor herself — working with emerging writers through the San Antonio Literacy Council.</p>
+        <div class="fa-books">
+          <p class="fa-books-label">Published with KidsMark Press</p>
+          <span class="fa-book-pill">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            The Quiet Compass
+          </span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="/authors/maria-elena-reyes/" class="btn btn-green">View Full Profile <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="/authors/" class="btn btn-outline-green">All Authors</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     MENTOR WALL
+════════════════════════ -->
+<section class="mentor" aria-labelledby="mentor-hd-h2">
+  <div class="mentor-bg-img" aria-hidden="true"></div>
+  <div class="wrap mentor-inner">
+    <div class="mentor-hd reveal">
+      <p class="ey ey-amber" style="justify-content:center;margin-bottom:16px">The Mentor Wall</p>
+      <h2 id="mentor-hd-h2">They changed your life.<br/><em>Let the world know.</em></h2>
+      <p>Anyone can submit a tribute. Every approved tribute gets its own shareable page. These aren't testimonials — they're thank-you notes the whole world can read.</p>
+    </div>
+    <div class="mentor-cards">
+      <div class="mc reveal" style="transition-delay:.1s">
+        <div class="mc-accent" aria-hidden="true"></div>
+        <button class="mc-share-btn" aria-label="Share this tribute">Share ↗</button>
+        <div class="mc-qmark" aria-hidden="true">"</div>
+        <p>"Mrs. Thompson never told me I was a good writer. She told me I had something worth saying. At eleven years old, those words were the difference between a diary no one would ever see and a book the world can now read."</p>
+        <div class="mc-person">
+          <div class="mc-avatar">
+            <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=100&q=80" alt="Eleanor Thompson" width="48" height="48" loading="lazy"/>
+          </div>
+          <div>
+            <p class="mc-name">Eleanor Thompson</p>
+            <p class="mc-sub">5th Grade Teacher · Austin, TX · Recognized by James O.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mc reveal" style="transition-delay:.22s">
+        <div class="mc-accent" aria-hidden="true"></div>
+        <button class="mc-share-btn" aria-label="Share this tribute">Share ↗</button>
+        <div class="mc-qmark" aria-hidden="true">"</div>
+        <p>"Mr. Rivera ran the after-school library club that nobody else wanted to attend. I showed up every Thursday for three years. He never once made me feel like I didn't belong in a room full of books. I do now."</p>
+        <div class="mc-person">
+          <div class="mc-avatar">
+            <img src="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&q=80" alt="Carlos Rivera" width="48" height="48" loading="lazy"/>
+          </div>
+          <div>
+            <p class="mc-name">Carlos Rivera</p>
+            <p class="mc-sub">School Librarian · Phoenix, AZ · Recognized by Amara K.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mc reveal" style="transition-delay:.34s">
+        <div class="mc-accent" aria-hidden="true"></div>
+        <button class="mc-share-btn" aria-label="Share this tribute">Share ↗</button>
+        <div class="mc-qmark" aria-hidden="true">"</div>
+        <p>"My grandmother never went to school past eighth grade. But she read to me every night, and she told me every single night that my stories were worth writing down. I finished my first novel last year. It's dedicated to her."</p>
+        <div class="mc-person">
+          <div class="mc-avatar">
+            <img src="https://images.unsplash.com/photo-1595956553066-fe24a8c33395?w=100&q=80" alt="Rosa Mendez" width="48" height="48" loading="lazy"/>
+          </div>
+          <div>
+            <p class="mc-name">Rosa Mendez</p>
+            <p class="mc-sub">Grandmother · El Paso, TX · Recognized by David M.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mentor-ctas reveal">
+      <a href="/mentor-wall/" class="btn btn-amber">Read All 340+ Tributes <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="/mentor-wall/recognize/" class="btn btn-outline-white">Recognize Your Mentor</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     HOW IT WORKS
+════════════════════════ -->
+<section class="process" aria-labelledby="process-h2">
+  <div class="wrap">
+    <div class="process-hd reveal">
+      <p class="ey ey-green" style="justify-content:center;margin-bottom:14px">How The Mentor Wall Works</p>
+      <h2 id="process-h2">From your memory to a public tribute in four steps.</h2>
+      <p>Every approved tribute gets its own permanent URL — yours to share with the mentor, their family, or the world.</p>
+    </div>
+    <div class="proc-steps">
+      <div class="ps reveal" style="transition-delay:.0s">
+        <div class="ps-num active-step" aria-label="Step 1">1</div>
+        <h4>Write the tribute</h4>
+        <p>Tell us who your mentor is, where they're from, and what they did. Include a photo if you have one.</p>
+      </div>
+      <div class="ps reveal" style="transition-delay:.12s">
+        <div class="ps-num" aria-label="Step 2">2</div>
+        <h4>Submit for review</h4>
+        <p>Our team reviews every submission before it goes live. Usually within 48 hours.</p>
+      </div>
+      <div class="ps reveal" style="transition-delay:.24s">
+        <div class="ps-num" aria-label="Step 3">3</div>
+        <h4>Tribute goes public</h4>
+        <p>Once approved, your mentor gets their own page — searchable, shareable, permanent.</p>
+      </div>
+      <div class="ps reveal" style="transition-delay:.36s">
+        <div class="ps-num" aria-label="Step 4">4</div>
+        <h4>Share the link</h4>
+        <p>Send it to your mentor, post it on social media, or just know you said thank you the right way.</p>
+      </div>
+    </div>
+    <div class="process-cta reveal">
+      <a href="/mentor-wall/recognize/" class="btn btn-amber" style="margin:0 auto">
+        Start a Tribute Now
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     BLOG PREVIEW
+════════════════════════ -->
+<section class="blog-sec" aria-labelledby="blog-h2">
+  <div class="wrap">
+    <div class="blog-hd reveal">
+      <div>
+        <p class="ey ey-green" style="margin-bottom:12px">Latest from KidsMark</p>
+        <h2 id="blog-h2">News, stories<br/>& book launches.</h2>
+      </div>
+      <a href="/blog/" class="btn btn-outline-green">View All Posts <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="blog-grid">
+      <article class="bc reveal">
+        <div class="bc-img tall">
+          <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=640&q=80" alt="KidsMark Press author writing — the creative process behind our books" width="480" height="640" loading="lazy"/>
+        </div>
+        <span class="bc-cat"><span class="tag tag-g">Author Story</span></span>
+        <h3>Maria Elena Reyes on the journal her teacher gave her — and the novel it became</h3>
+        <p class="bc-meta">June 12, 2024 · 6 min read</p>
+        <p class="bc-excerpt">She kept it in her bag for twenty years before she opened it and started writing. The story of The Quiet Compass starts with a desk and a blank journal and a woman who saw something nobody else did yet.</p>
+      </article>
+      <article class="bc reveal reveal-delay-1">
+        <div class="bc-img wide">
+          <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=480&q=80" alt="Rows of books in a library — the world KidsMark Press authors grew up in" width="480" height="300" loading="lazy"/>
+        </div>
+        <span class="bc-cat"><span class="tag tag-a">Press Release</span></span>
+        <h3>KidsMark Press announces its Spring 2024 catalog — four new titles, four new voices</h3>
+        <p class="bc-meta">May 28, 2024 · 3 min read</p>
+      </article>
+      <article class="bc reveal reveal-delay-2">
+        <div class="bc-img wide">
+          <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=480&q=80" alt="A mentor and student — the relationship behind every KidsMark story" width="480" height="300" loading="lazy"/>
+        </div>
+        <span class="bc-cat"><span class="tag tag-g">Mentor Wall</span></span>
+        <h3>The 300th tribute just went live on the Mentor Wall. Here's what that means.</h3>
+        <p class="bc-meta">May 15, 2024 · 4 min read</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     AUTHOR CTA
+════════════════════════ -->
+<section class="author-cta" aria-labelledby="act-heading">
+  <div class="author-cta-bg" aria-hidden="true"></div>
+  <div class="author-cta-overlay" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="author-cta-inner">
+      <div class="act-left reveal-left">
+        <p class="ey ey-white" style="margin-bottom:20px">For Writers</p>
+        <h2 id="act-heading">You've been working on<br/>something. <em>We want to read it.</em></h2>
+        <p>KidsMark Press was built for the author who doesn't have an agent, a publishing credit, or a guarantee — just a story that needs to exist. Submit your manuscript directly to our editorial team. No gatekeepers.</p>
+        <a href="/submit/" class="btn btn-amber">
+          Submit Your Manuscript
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="act-right reveal-right">
+        <h3>What to include in your submission</h3>
+        <ul class="act-checklist">
+          <li>Your name, biography &amp; contact information</li>
+          <li>Manuscript or excerpt (PDF, Word, or Google Doc)</li>
+          <li>Book proposal — what the story is, who it's for</li>
+          <li>Any relevant background or writing history</li>
+          <li>Optional: who was your mentor? We'd love to know.</li>
+        </ul>
+        <a href="/submit/" class="btn btn-outline-white">
+          Go to Submission Portal
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     NEWSLETTER
+════════════════════════ -->
+<section class="nl-sec" aria-labelledby="nl-h2">
+  <div class="nl-left">
+    <p class="ey ey-white" style="margin-bottom:16px">Stay In The Story</p>
+    <h2 id="nl-h2">New books. Author stories.<br/>Mentor spotlights.</h2>
+    <p>In your inbox when it matters. No noise, no spam — just the things happening inside KidsMark Press.</p>
+  </div>
+  <div class="nl-right">
+    <form class="nl-form" action="/newsletter/subscribe/" method="POST" aria-label="Newsletter signup">
+      <label for="nl-email" style="font-size:14px;font-weight:500;color:var(--INK2)">Your email address</label>
+      <input type="email" id="nl-email" name="email" placeholder="you@example.com" required autocomplete="email" aria-required="true"/>
+      <button type="submit" class="btn btn-green" style="width:fit-content">Subscribe — it's free</button>
+      <p class="nl-note">No spam. Unsubscribe any time. We hate junk mail as much as you do.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ════════════════════════
+     FOOTER
+════════════════════════ -->
+<footer aria-label="Site footer">
+  <div class="wrap">
+    <div class="ft-inner">
+      <div>
+        <p class="ft-logo">Kids<b>Mark</b> Press</p>
+        <p class="ft-tagline">An independent publishing house dedicated to encouraging new authors and celebrating every mentor who believed in them first.</p>
+        <div class="ft-social" aria-label="KidsMark Press on social media">
+          <a href="#" aria-label="Facebook">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="X / Twitter">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h5>Discover</h5>
+        <ul class="ft-links">
+          <li><a href="/books/">Book Catalog</a></li>
+          <li><a href="/authors/">Author Directory</a></li>
+          <li><a href="/mentor-wall/">Mentor Wall</a></li>
+          <li><a href="/blog/">News &amp; Blog</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h5>Get Involved</h5>
+        <ul class="ft-links">
+          <li><a href="/mentor-wall/recognize/">Recognize a Mentor</a></li>
+          <li><a href="/submit/">Submit Manuscript</a></li>
+          <li><a href="/mentee-directory/">Mentee Directory</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h5>Company</h5>
+        <ul class="ft-links">
+          <li><a href="/about/">About KidsMark Press</a></li>
+          <li><a href="/about/#mission">Our Mission</a></li>
+          <li><a href="/about/#history">Company History</a></li>
+          <li><a href="/newsletter/">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p class="ft-copy">© <span id="yr"></span> KidsMark Press. All rights reserved.</p>
+      <nav class="ft-legal" aria-label="Legal links">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms/">Terms of Use</a>
+        <a href="/accessibility/">Accessibility</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* Nav bg on scroll */
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('bg', window.scrollY > 50);
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* Mobile menu */
+const hbg = document.getElementById('hbg');
+const mob = document.getElementById('mobMenu');
+hbg.addEventListener('click', () => {
+  const open = mob.classList.toggle('on');
+  hbg.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mob.classList.remove('on');
+  hbg.setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+}));
+
+/* Audience tabs */
+document.querySelectorAll('.aud-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.aud-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    document.querySelectorAll('.aud-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected','true');
+    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+    if (panel) panel.classList.add('active');
+  });
+});
+
+/* Scroll reveal */
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
