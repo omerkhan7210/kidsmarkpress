@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KidsMark Press — Phase 1 Scope of Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#18181a;--ink2:#44444a;--ink3:#888894;--rule:#e4e2dc;
+  --surface:#f8f6f2;--page:#ffffff;
+  --green:#2a5c3f;--green-light:#e8f2ec;--green-mid:#c2ddc9;
+  --gold:#c8922a;--gold-light:#fdf4e3;
+  --red:#b03030;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--ink);font-size:15px;line-height:1.65;print-color-adjust:exact}
+.page{max-width:900px;margin:0 auto;background:var(--page);padding:60px 68px 90px;border-left:1px solid var(--rule);border-right:1px solid var(--rule);min-height:100vh}
+
+/* TOP BAR */
+.top-bar{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2.5px solid var(--ink);padding-bottom:26px;margin-bottom:38px}
+.brand{font-family:'Playfair Display',serif;font-size:27px;font-weight:600;line-height:1.15}
+.brand-sub{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-top:5px}
+.meta{text-align:right;font-size:12px;color:var(--ink3);line-height:2}
+.meta strong{color:var(--ink);font-weight:500}
+
+/* HERO STRIP */
+.hero{background:var(--green);color:#fff;border-radius:3px;padding:26px 32px;margin-bottom:46px;display:grid;grid-template-columns:repeat(4,1fr)}
+.hstat{text-align:center;padding:0 12px;border-right:1px solid rgba(255,255,255,.18)}
+.hstat:last-child{border-right:none}
+.hval{font-family:'Playfair Display',serif;font-size:26px;color:#f5d488;display:block;line-height:1.1}
+.hlbl{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-top:5px;display:block}
+
+/* SECTION */
+.sec{margin-bottom:48px}
+.sec-tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);font-weight:500;margin-bottom:7px}
+.sec-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:500;color:var(--ink);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+
+/* CALLOUT */
+.callout{background:var(--green-light);border-left:3px solid var(--green);padding:14px 18px;border-radius:0 3px 3px 0;font-size:13px;color:var(--ink2);margin-bottom:32px;line-height:1.7}
+.callout.gold{background:var(--gold-light);border-left-color:var(--gold)}
+
+/* FEATURE GRID */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:18px}
+.fc{border:1px solid var(--rule);border-radius:3px;padding:18px 20px;background:#fdfcfa}
+.fc.full{grid-column:1/-1}
+.fc.sig{border-left:3px solid var(--gold);background:var(--gold-light)}
+.fc.featured{border-left:3px solid var(--green);background:var(--green-light)}
+.fc-head{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.fc-title{font-weight:500;font-size:14px;color:var(--ink)}
+.badge{font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:2px;font-weight:400}
+.badge.g{background:var(--green);color:#fff}
+.badge.gold{background:var(--gold);color:#fff}
+.fc-body{font-size:13px;color:var(--ink2);line-height:1.6}
+.fc-list{margin-top:9px;padding:0;list-style:none}
+.fc-list li{font-size:12.5px;color:var(--ink2);padding:3px 0 3px 14px;position:relative}
+.fc-list li::before{content:'—';position:absolute;left:0;color:var(--ink3);font-size:11px}
+
+/* PRICING TABLE */
+.price-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:10px}
+.price-table th{background:var(--ink);color:#fff;padding:10px 14px;text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.price-table td{padding:12px 14px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:top}
+.price-table tr.subtotal td{font-weight:500;color:var(--ink);background:#f4f8f5}
+.price-table tr.total td{font-weight:500;color:var(--ink);background:var(--green);color:#fff}
+.amt{font-family:'Playfair Display',serif;font-size:15px;white-space:nowrap;text-align:right}
+.price-table tr.total .amt{color:#f5d488}
+
+/* MILESTONE */
+.ms-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:32px}
+.ms-table th{background:var(--ink);color:#fff;padding:10px 14px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;text-align:left}
+.ms-table td{padding:11px 14px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:top}
+.ms-table tr:last-child td{font-weight:500;color:var(--ink);background:#f4f8f5}
+.ms-amt{font-family:'Playfair Display',serif;color:var(--green);font-size:14px;white-space:nowrap;text-align:right}
+
+/* TECH GRID */
+.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:36px}
+.tp{border:1px solid var(--rule);border-radius:3px;padding:12px 14px;text-align:center}
+.tp-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-bottom:3px}
+.tp-val{font-size:13px;font-weight:500;color:var(--ink)}
+
+/* REFERENCES */
+.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px}
+.ref-card{border:1px solid var(--rule);border-radius:3px;padding:16px 18px;background:#fdfcfa}
+.ref-site{font-weight:500;font-size:13.5px;color:var(--green);margin-bottom:4px}
+.ref-url{font-size:11px;color:var(--ink3);margin-bottom:8px;letter-spacing:.03em}
+.ref-desc{font-size:12.5px;color:var(--ink2);line-height:1.6}
+.ref-tag{display:inline-block;font-size:10px;letter-spacing:.07em;text-transform:uppercase;background:var(--green-light);color:var(--green);padding:2px 7px;border-radius:2px;margin-top:7px}
+
+/* DELIVERABLES GRID */
+.del-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:36px}
+.del-item{font-size:13px;color:var(--ink2);padding:10px 14px;border:1px solid var(--rule);border-radius:3px;display:flex;gap:10px;align-items:flex-start}
+.del-check{color:var(--green);font-size:15px;flex-shrink:0;font-weight:600;margin-top:1px}
+
+/* PHASE 2 BANNER */
+.phase2{background:var(--gold-light);border:1px solid var(--gold);border-radius:3px;padding:20px 24px;margin-bottom:44px}
+.phase2-title{font-weight:500;font-size:14px;color:var(--ink);margin-bottom:8px}
+.phase2-body{font-size:13px;color:var(--ink2);line-height:1.7}
+.phase2-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.phase2-item{font-size:12px;color:var(--ink2);padding:6px 10px;background:#fff9ee;border:1px solid #e8d4a0;border-radius:2px}
+
+/* Q&A */
+.qa-grid{display:grid;gap:18px;margin-bottom:36px}
+.qa-item{border-left:3px solid var(--green);padding:0 0 0 16px}
+.qa-q{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.qa-a{font-size:13.5px;color:var(--ink2);line-height:1.7}
+.qa-a strong{color:var(--ink);font-weight:500}
+
+/* SIGN OFF */
+.sign-off{border-top:2px solid var(--ink);padding-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:50px}
+.sign-line{border-bottom:1px solid var(--ink);height:38px;margin-bottom:6px}
+.sign-label{font-size:11px;color:var(--ink3);letter-spacing:.05em}
+
+@media print{
+  body{background:#fff}
+  .page{border:none;padding:40px 50px 60px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div>
+      <div class="brand">KidsMark Press</div>
+      <div class="brand-sub">Website Development — Scope of Work & Proposal Response</div>
+    </div>
+    <div class="meta">
+      <strong>Prepared for:</strong> George Garza<br>
+      <strong>Project:</strong> KidsMarkPress.com<br>
+      <strong>Prepared by:</strong> Muhammad Umer Khan<br>
+      <strong>Date:</strong> June 2026
+    </div>
+  </div>
+
+  <!-- HERO STRIP -->
+  <div class="hero">
+    <div class="hstat">
+      <span class="hval">$1,800</span>
+      <span class="hlbl">Phase 1 Fixed Price</span>
+    </div>
+    <div class="hstat">
+      <span class="hval">$1,400</span>
+      <span class="hlbl">Phase 2 Fixed Price</span>
+    </div>
+    <div class="hstat">
+      <span class="hval">3–4 wks</span>
+      <span class="hlbl">Phase 1 Timeline</span>
+    </div>
+    <div class="hstat">
+      <span class="hval">$35/hr</span>
+      <span class="hlbl">Support Rate</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    This document responds to all nine items in the KidsMark Press RFP and serves as the complete project scope for Phase 1, with Phase 2 defined and priced for when you're ready to proceed.
+  </div>
+
+  <!-- 1. COMPANY OVERVIEW -->
+  <div class="sec">
+    <div class="sec-tag">01 — Proposal Item 1</div>
+    <h2 class="sec-title">Company overview</h2>
+    <div class="qa-grid">
+      <div class="qa-item">
+        <div class="qa-q">Who we are</div>
+        <div class="qa-a">A WordPress-focused development practice with <strong>5+ years of experience</strong> building custom database-driven websites for publishers, nonprofits, educational platforms, and community organizations. Every project is built on WordPress + Elementor Pro with ACF for structured data — the same stack you've specified. We don't use page-builder shortcuts that break in six months; we build sites your team can actually maintain.</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">Specialization</div>
+        <div class="qa-a">Custom Post Types and database-driven directories (books, authors, members), moderated submission workflows, and community-facing platforms. The Mentor Wall feature — a public submission system with an admin approval queue — is exactly the kind of feature we build regularly on WordPress without needing a custom plugin or expensive third-party tool.</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">Our approach</div>
+        <div class="qa-a">Milestone-based delivery with written client sign-off at each stage. Nothing moves to production without your approval. We also document everything so your non-technical staff can manage the site independently after handoff — no recurring developer dependency for day-to-day updates.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. SIMILAR WEBSITES -->
+  <div class="sec">
+    <div class="sec-tag">02 — Proposal Item 2</div>
+    <h2 class="sec-title">Similar websites completed</h2>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <div class="ref-site">Tri-County Career Academy</div>
+        <div class="ref-url"><a href="https://tricountycareeracademy.netlify.app" target="_blank" style="color:var(--green);text-decoration:none">tricountycareeracademy.netlify.app ↗</a></div>
+        <div class="ref-desc">Full WordPress rebuild with custom certificate verification system, Stripe + PayPal payments, FluentCRM, Events Calendar, and a 35-page Elementor Pro design system. Admin training and full migration from GoDaddy to WP Engine.</div>
+        <span class="ref-tag">WordPress · Elementor · Custom CPTs</span>
+      </div>
+      <div class="ref-card">
+        <div class="ref-site">Veterans Transition Support</div>
+        <div class="ref-url" style="color:var(--ink3);font-size:11px">Completed in parallel with TCCA — available on request</div>
+        <div class="ref-desc">Technical SEO overhaul across 92 pages, custom Job Landings board with public submission form and admin moderation queue — same architecture as the KidsMark Mentor Wall. Elementor Pro redesigns and performance optimization.</div>
+        <span class="ref-tag">Submission Forms · Moderation Queue</span>
+      </div>
+      <div class="ref-card">
+        <div class="ref-site">Community Directory Platform</div>
+        <div class="ref-url" style="color:var(--ink3);font-size:11px">Reference available on request</div>
+        <div class="ref-desc">ACF-powered member directory with search by name, location, and category. Admin approval workflow before profiles go live. Shareable profile pages — directly comparable to the Author Directory and Mentor Wall in this project.</div>
+        <span class="ref-tag">Directory · Search · Admin Approval</span>
+      </div>
+      <div class="ref-card">
+        <div class="ref-site">Independent Publisher Platform</div>
+        <div class="ref-url" style="color:var(--ink3);font-size:11px">Reference available on request</div>
+        <div class="ref-desc">Database-driven book catalog (CPT) with cover images, ISBNs, purchase links, and category filtering. Author profile pages linked to publications — same structure planned for KidsMarkPress.com.</div>
+        <span class="ref-tag">Book Catalog · Author Profiles · CPT</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. REFERENCES — real comparable sites -->
+  <div class="sec">
+    <div class="sec-tag">03 — Proposal Item 3 · Comparable live sites</div>
+    <h2 class="sec-title">References — what KidsMark Press can look like</h2>
+    <div class="callout gold" style="margin-bottom:20px">These are real live sites in the publishing and community platform space that demonstrate the exact features planned for KidsMarkPress.com. Click any link to view them.</div>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <div class="ref-site">SCBWI — Society of Children's Book Writers</div>
+        <div class="ref-url"><a href="https://www.scbwi.org" target="_blank" style="color:var(--green);text-decoration:none">scbwi.org ↗</a></div>
+        <div class="ref-desc">The leading community platform for children's book creators. Features a member directory, searchable illustrator gallery, book listings, blog, awards, and community submission workflows — showing the full scale of what a publishing community platform can become.</div>
+        <span class="ref-tag">Author Directory · Book Listings · Community</span>
+      </div>
+      <div class="ref-card">
+        <div class="ref-site">Children's Books North</div>
+        <div class="ref-url"><a href="https://www.childrensbooksnorth.co.uk" target="_blank" style="color:var(--green);text-decoration:none">childrensbooksnorth.co.uk ↗</a></div>
+        <div class="ref-desc">Independent publisher community with a mentorship directory, author spotlights, blog, and application workflows. The mentor scheme and author recognition features closely mirror KidsMark's Mentor Wall and Author Directory goals.</div>
+        <span class="ref-tag">Mentor Program · Author Spotlights · Blog</span>
+      </div>
+      <div class="ref-card">
+        <div class="ref-site">Alliance of Independent Authors</div>
+        <div class="ref-url"><a href="https://www.allianceindependentauthors.org/services-directory/" target="_blank" style="color:var(--green);text-decoration:none">allianceindependentauthors.org ↗</a></div>
+        <div class="ref-desc">Searchable services directory for the independent publishing community — demonstrates the database-driven directory structure (search by name, category, location) planned for KidsMark's Author and Book directories.</div>
+        <span class="ref-tag">Searchable Directory · Publishing · Community</span>
+      </div>
+      <div class="ref-card">
+        <div class="ref-site">KidLit411</div>
+        <div class="ref-url"><a href="https://www.kidlit411.com" target="_blank" style="color:var(--green);text-decoration:none">kidlit411.com ↗</a></div>
+        <div class="ref-desc">Resource and community hub for children's book authors and mentors. Features mentor program listings, author resources, and blog content — similar audience and mission to KidsMark Press, showing how the community side can grow over time.</div>
+        <span class="ref-tag">Mentor Listings · Author Resources · Blog</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. TIMELINE -->
+  <div class="sec">
+    <div class="sec-tag">04 — Proposal Item 4</div>
+    <h2 class="sec-title">Estimated timeline — Phase 1 (4–5 weeks)</h2>
+    <div class="callout gold" style="margin-bottom:20px">I include a <strong>Figma design phase before any code is written</strong>. This is non-negotiable for me on every project because it prevents the most expensive problem in web development: building something, then redesigning it. You see exactly what KidsMarkPress.com will look like — layout, colors, typography, the Mentor Wall, the book catalog grid — before I touch WordPress. One round of revisions in Figma costs minutes. The same revision after the site is built can cost hours. This protects your budget and your timeline.</div>
+    <table class="ms-table">
+      <thead>
+        <tr>
+          <th>Timeline</th>
+          <th>Phase</th>
+          <th>What gets delivered</th>
+          <th style="text-align:right">Payment trigger</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Days 1–3</strong></td>
+          <td>Kickoff & Discovery</td>
+          <td>Scope signed. Staging environment on SiteGround configured. Plugin stack installed (Elementor Pro, ACF Pro, Fluent Forms, Rank Math, WP Rocket, Wordfence). Brand assets collected from client (logo, colors, fonts, photos, copy).</td>
+          <td class="ms-amt" style="text-align:right">Deposit on signing</td>
+        </tr>
+        <tr style="background:#fdf9f1">
+          <td><strong>Days 4–9</strong></td>
+          <td>🎨 Figma Design Phase</td>
+          <td>Full Figma mockups delivered for: Home page, Book Catalog, Author Directory, Mentor Wall (submission form + tribute page + browse page), About, Contact, Blog. Desktop and mobile views. Client reviews and approves — one revision round included. No WordPress build begins until designs are signed off.</td>
+          <td class="ms-amt" style="text-align:right">Design sign-off → build begins</td>
+        </tr>
+        <tr>
+          <td><strong>Days 10–21</strong></td>
+          <td>WordPress Build on Staging</td>
+          <td>All approved Figma designs implemented in Elementor Pro. Book Catalog (CPT + ACF + live search). Author Directory (CPT + ACF + search by name, genre, state). Blog/News with category taxonomy. About and Contact pages. All mobile responsive.</td>
+          <td class="ms-amt" style="text-align:right">Milestone 2 on staging sign-off</td>
+        </tr>
+        <tr>
+          <td><strong>Days 22–28</strong></td>
+          <td>Mentor Wall + QA</td>
+          <td>Mentor Wall submission form, admin moderation queue, public browse and search, individual shareable tribute pages, share buttons. Full QA across desktop and mobile. SEO configuration (Rank Math), security (Wordfence), backup verification.</td>
+          <td class="ms-amt" style="text-align:right">—</td>
+        </tr>
+        <tr>
+          <td><strong>Days 29–32</strong></td>
+          <td>Launch & Handoff</td>
+          <td>Deployment to production SiteGround, DNS cutover, 1-hour admin training session (recorded for your team), written staff documentation handed over. 30-day bug warranty begins.</td>
+          <td class="ms-amt" style="text-align:right">Final on written launch approval</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">Timeline requires content from your team by Day 3: logo files, brand color hex codes, any existing photos or headshots, and the text for your About page and Mission statement. Content delays shift the timeline proportionally — this is the most common reason projects run late and it's entirely avoidable with early content collection.</div>
+  </div>
+
+  <!-- 5. PHASE 1 COST -->
+  <div class="sec">
+    <div class="sec-tag">05 — Proposal Item 5</div>
+    <h2 class="sec-title">Phase 1 cost — fixed price</h2>
+    <div class="callout gold" style="margin-bottom:20px">Note on the $500 figure: That budget would cover a basic brochure site with no database functionality. Phase 1 of this project includes two searchable database-driven directories, a moderated community submission platform (the Mentor Wall), a blog, contact routing, and full mobile/SEO/security configuration. The pricing below reflects what this scope actually requires to build properly — and is still priced competitively for the feature set.</div>
+    <table class="price-table">
+      <thead><tr><th>Deliverable</th><th>Notes</th><th style="text-align:right">Price</th></tr></thead>
+      <tbody>
+        <tr style="background:#fdf9f1"><td><strong>Figma Design Phase</strong></td><td>Full mockups for all pages — desktop + mobile. Home, Book Catalog, Author Directory, Mentor Wall (3 views), About, Contact, Blog. One revision round included. Delivered before any WordPress build begins.</td><td class="amt">$280</td></tr>
+        <tr><td>WordPress Setup & Environment</td><td>SiteGround staging, plugin stack (Elementor Pro, ACF Pro, Fluent Forms, Rank Math, WP Rocket, Wordfence), theme configuration</td><td class="amt">$80</td></tr>
+        <tr><td>Home Page</td><td>Hero, featured book/author, mentor spotlight, newsletter signup, CTAs — built from approved Figma design</td><td class="amt">$180</td></tr>
+        <tr><td>About & Contact Pages</td><td>Static content + routed contact form + reCAPTCHA spam protection</td><td class="amt">$100</td></tr>
+        <tr><td>Blog / News Section</td><td>Categories: articles, press releases, announcements, book launches</td><td class="amt">$80</td></tr>
+        <tr><td>Book Catalog</td><td>CPT + ACF fields, search by title/author/category, individual book pages, catalog archive grid</td><td class="amt">$300</td></tr>
+        <tr><td>Author Directory</td><td>CPT + ACF, search by name/genre/state, individual author profile pages, directory archive</td><td class="amt">$300</td></tr>
+        <tr><td>Mentor Wall</td><td>Submission form, admin moderation queue, public browse/search, individual shareable tribute pages, share buttons (Facebook, X, copy link)</td><td class="amt">$300</td></tr>
+        <tr><td>QA, SEO & Security</td><td>Mobile QA, Rank Math Pro configuration, Wordfence, SSL verification, daily backup confirmation</td><td class="amt">$100</td></tr>
+        <tr><td>Admin Training & Documentation</td><td>1-hour recorded training session + written staff guide for managing books, authors, and Mentor Wall approvals</td><td class="amt">$80</td></tr>
+        <tr class="subtotal"><td colspan="2"><strong>Phase 1 Total — Fixed Price</strong></td><td class="amt" style="color:var(--green)"><strong>$1,800</strong></td></tr>
+      </tbody>
+    </table>
+    <table class="ms-table" style="margin-top:20px">
+      <thead><tr><th>Payment</th><th>Trigger</th><th style="text-align:right">Amount</th></tr></thead>
+      <tbody>
+        <tr><td>Deposit</td><td>Scope signed before any work begins</td><td class="ms-amt">$720 (40%)</td></tr>
+        <tr><td>Milestone 2</td><td>Figma designs approved in writing — build begins</td><td class="ms-amt">$540 (30%)</td></tr>
+        <tr><td>Milestone 3</td><td>Written staging approval of all pages</td><td class="ms-amt">$360 (20%)</td></tr>
+        <tr><td>Final</td><td>Written launch acceptance</td><td class="ms-amt">$180 (10%)</td></tr>
+        <tr><td><strong>Total</strong></td><td></td><td class="ms-amt"><strong>$1,800</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 6. PHASE 2 COST -->
+  <div class="sec">
+    <div class="sec-tag">06 — Proposal Item 6</div>
+    <h2 class="sec-title">Phase 2 cost — fixed price</h2>
+    <div class="phase2">
+      <div class="phase2-title">Phase 2 — Available after Phase 1 launch · $1,400 fixed</div>
+      <div class="phase2-body">Phase 2 turns KidsMark Press into a fully interactive community platform with user accounts, multiple roles, an author submission portal with document uploads, a Mentee Directory, and a global search engine across all content. Priced below for planning purposes — scoped in detail once Phase 1 is live.</div>
+      <div class="phase2-grid">
+        <div class="phase2-item">Mentee Directory — profiles with admin approval</div>
+        <div class="phase2-item">Author Submission Portal — manuscript upload + review workflow</div>
+        <div class="phase2-item">User accounts — register, login, password recovery</div>
+        <div class="phase2-item">Four user roles — Visitor, Author, Mentor, Administrator</div>
+        <div class="phase2-item">Global search — books, authors, mentors, mentees</div>
+        <div class="phase2-item">Admin Dashboard — stats, export, bulk management</div>
+      </div>
+    </div>
+    <table class="price-table">
+      <thead><tr><th>Deliverable</th><th>Notes</th><th style="text-align:right">Price</th></tr></thead>
+      <tbody>
+        <tr><td>User Accounts + Roles (4)</td><td>Registration, login, recovery, role assignment via Fluent Community or WP native roles</td><td class="amt">$350</td></tr>
+        <tr><td>Mentee Directory</td><td>CPT + ACF, profile fields, admin approval queue, public browse page</td><td class="amt">$280</td></tr>
+        <tr><td>Author Submission Portal</td><td>Multi-step form with document upload, review status, admin workflow</td><td class="amt">$350</td></tr>
+        <tr><td>Global Search</td><td>Search across books, authors, mentors, mentees in one unified results page</td><td class="amt">$220</td></tr>
+        <tr><td>Training & Documentation update</td><td>Updated admin guide covering all Phase 2 features</td><td class="amt">$200</td></tr>
+        <tr class="subtotal"><td colspan="2"><strong>Phase 2 Total — Fixed Price</strong></td><td class="amt" style="color:var(--green)"><strong>$1,400</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 7. ANNUAL MAINTENANCE -->
+  <div class="sec">
+    <div class="sec-tag">07 — Proposal Item 7</div>
+    <h2 class="sec-title">Annual maintenance cost</h2>
+    <table class="price-table">
+      <thead><tr><th>Plan</th><th>What's included</th><th style="text-align:right">Cost</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Basic</strong></td>
+          <td>WordPress core, theme, and plugin updates monthly. Security monitoring. Up to 1 hour of minor content edits per month.</td>
+          <td class="amt">$600/yr<br><span style="font-size:11px;color:var(--ink3)">$50/mo</span></td>
+        </tr>
+        <tr>
+          <td><strong>Standard (recommended)</strong></td>
+          <td>Everything in Basic + up to 3 hours of content/layout edits per month, priority response within 24 hours, quarterly performance check.</td>
+          <td class="amt">$1,200/yr<br><span style="font-size:11px;color:var(--ink3)">$100/mo</span></td>
+        </tr>
+        <tr>
+          <td><strong>Premium</strong></td>
+          <td>Everything in Standard + up to 6 hours of edits per month, monthly report, new minor feature additions (forms, page sections), 12-hour emergency response.</td>
+          <td class="amt">$2,400/yr<br><span style="font-size:11px;color:var(--ink3)">$200/mo</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">Hosting (SiteGround), domain, and plugin licences (Elementor Pro ~$99/yr, ACF Pro ~$49/yr, WP Rocket ~$59/yr) are billed separately and owned by KidsMark Press — not bundled into maintenance.</div>
+  </div>
+
+  <!-- 8. HOURLY SUPPORT RATE -->
+  <div class="sec">
+    <div class="sec-tag">08 — Proposal Item 8</div>
+    <h2 class="sec-title">Hourly support rate</h2>
+    <div class="qa-grid">
+      <div class="qa-item">
+        <div class="qa-q">Standard hourly rate</div>
+        <div class="qa-a"><strong>$35/hour</strong> for all out-of-scope support requests — new features, design changes, bug fixes outside the 30-day post-launch warranty period, or any work not covered by an active maintenance plan. Billed in 30-minute increments. Invoiced monthly.</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">Post-launch warranty</div>
+        <div class="qa-a">All bug fixes directly related to our build are covered at <strong>no charge for 30 days</strong> after launch. This covers anything that isn't working as specified in the scope — not changes to the spec or new requests.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. TECHNOLOGY STACK -->
+  <div class="sec">
+    <div class="sec-tag">09 — Proposal Item 9</div>
+    <h2 class="sec-title">Recommended technology stack</h2>
+    <div class="tech-grid">
+      <div class="tp"><div class="tp-lbl">CMS</div><div class="tp-val">WordPress 6.x</div></div>
+      <div class="tp"><div class="tp-lbl">Builder</div><div class="tp-val">Elementor Pro</div></div>
+      <div class="tp"><div class="tp-lbl">Custom Fields</div><div class="tp-val">ACF Pro</div></div>
+      <div class="tp"><div class="tp-lbl">Forms</div><div class="tp-val">Fluent Forms Pro</div></div>
+      <div class="tp"><div class="tp-lbl">SEO</div><div class="tp-val">Rank Math Pro</div></div>
+      <div class="tp"><div class="tp-lbl">Performance</div><div class="tp-val">WP Rocket</div></div>
+      <div class="tp"><div class="tp-lbl">Security</div><div class="tp-val">Wordfence</div></div>
+      <div class="tp"><div class="tp-lbl">Email</div><div class="tp-val">WP Mail SMTP</div></div>
+      <div class="tp"><div class="tp-lbl">Backups</div><div class="tp-val">SiteGround Built-in</div></div>
+      <div class="tp"><div class="tp-lbl">Hosting</div><div class="tp-val">SiteGround</div></div>
+      <div class="tp"><div class="tp-lbl">Database</div><div class="tp-val">MySQL via WP</div></div>
+      <div class="tp"><div class="tp-lbl">Newsletter</div><div class="tp-val">MailPoet / MC</div></div>
+    </div>
+    <div class="callout">ACF Pro (Advanced Custom Fields) is how the Book Catalog and Author Directory are built as proper database records — not just posts. This is what makes them searchable, filterable, and manageable by your team through a clean admin interface rather than raw post editing.</div>
+  </div>
+
+  <!-- HONEST SUGGESTIONS -->
+  <div class="sec">
+    <div class="sec-tag">Honest advice — from experience</div>
+    <h2 class="sec-title">Suggestions & things worth knowing before you start</h2>
+    <div class="callout gold" style="margin-bottom:24px">These are things most developers won't tell you because they either don't know them yet or don't want to complicate the sale. I'm sharing them because they'll save you money, frustration, and rebuilds down the road.</div>
+    <div class="qa-grid">
+      <div class="qa-item">
+        <div class="qa-q">Start with a content-first mindset</div>
+        <div class="qa-a">The most common reason publishing sites feel empty at launch: the site is built before the content exists. Before Day 1, I'd recommend having at least <strong>3–5 books ready to populate the catalog, 3–5 author profiles, and 5–10 mentor tributes pre-seeded</strong> (you can submit them yourself as examples). A site with real content on launch day performs better in search engines, looks more credible to visitors, and gives your team a working template to follow when adding more.</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">The Mentor Wall will get spam — plan for it</div>
+        <div class="qa-a">Any public submission form that doesn't require login will attract bot submissions. reCAPTCHA helps, but admin moderation is your real protection — which is already built into this scope. My honest suggestion: <strong>designate one person on your team who checks the moderation queue at least twice a week</strong>. If it sits unattended for weeks, approved tributes will back up and the public wall will feel stale. This is a people process, not just a technical one.</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">Don't skip Phase 2 for too long</div>
+        <div class="qa-a">The Author Submission Portal (Phase 2) is actually one of your core stated objectives — "allow potential authors to submit information for publication consideration." Right now in Phase 1, there's no formal way for prospective authors to submit to you beyond the contact form. <strong>If receiving author submissions is important from launch, consider fast-tracking the Author Submission Portal</strong> into Phase 1 for a modest addition to the budget, rather than sending serious authors to a generic contact form.</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">On the $500 budget</div>
+        <div class="qa-a">I want to be direct: $500 will get you a pre-made theme with your logo dropped in — no database-driven catalog, no searchable directories, no moderation workflow. That's not what your RFP is asking for. The price in this proposal ($1,800 for Phase 1) is already well below US-market rate for this feature set. I'm pricing it this way because the project is interesting and I want the work — but I'd rather tell you that honestly now than cut corners to hit $500 and hand you something that doesn't actually work the way you need it to.</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">Invest in a good newsletter tool early</div>
+        <div class="qa-a">The newsletter signup on the home page is included, but which tool you connect it to matters. <strong>MailPoet</strong> is free up to 1,000 subscribers and lives inside WordPress (no third-party dashboard to learn). <strong>Mailchimp</strong> is the industry standard and integrates with everything but has a steeper learning curve. My recommendation for a team new to email marketing: start with MailPoet, migrate to Mailchimp when you hit 1,000 subscribers and need more automation power.</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">SEO won't happen overnight — start blogging from Day 1</div>
+        <div class="qa-a">Rank Math will be configured and all pages will be SEO-ready at launch, but search engine rankings take 3–6 months minimum to build. The single biggest thing you can do to accelerate this: <strong>publish one blog post per week from launch day</strong>, specifically targeting search terms your authors and readers would actually type — "how to get a children's book published," "mentor recognition ideas," "independent publishing for first-time authors." The blog section is built for this. Use it early and consistently.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE BREAKDOWN -->
+  <div class="sec">
+    <div class="sec-tag">Phase 1 — Full feature scope</div>
+    <h2 class="sec-title">What's being built</h2>
+
+    <div class="fg">
+      <div class="fc featured full">
+        <div class="fc-head"><div class="fc-title">Home Page</div><span class="badge g">Public</span></div>
+        <div class="fc-body">The front door. Fully editable by your team after handoff.</div>
+        <ul class="fc-list">
+          <li>Hero section with headline, subtext, and primary CTA buttons</li>
+          <li>Featured Book — pulled live from book database, admin selects which book</li>
+          <li>Featured Author — pulled live from author directory</li>
+          <li>Mentor Spotlight — one approved tribute highlighted on homepage</li>
+          <li>Newsletter signup (Fluent Forms connected to MailPoet or Mailchimp)</li>
+          <li>Call-to-action blocks linking to Mentor Wall and Author submission areas</li>
+        </ul>
+      </div>
+
+      <div class="fc">
+        <div class="fc-head"><div class="fc-title">About Page</div></div>
+        <div class="fc-body">Static content, editable in Elementor by non-technical staff.</div>
+        <ul class="fc-list">
+          <li>Company history section</li>
+          <li>Mission statement block</li>
+          <li>Contact information (address, email, phone)</li>
+        </ul>
+      </div>
+
+      <div class="fc">
+        <div class="fc-head"><div class="fc-title">Contact Page</div></div>
+        <div class="fc-body">Routed form with notification emails to designated inboxes.</div>
+        <ul class="fc-list">
+          <li>Fluent Forms contact form</li>
+          <li>Email routing to designated recipient</li>
+          <li>Honeypot + reCAPTCHA v3 spam protection</li>
+        </ul>
+      </div>
+
+      <div class="fc full">
+        <div class="fc-head"><div class="fc-title">Blog / News</div></div>
+        <div class="fc-body">Standard WordPress posts with category taxonomy. Staff can publish new content without developer help.</div>
+        <ul class="fc-list">
+          <li>Categories: Articles, Press Releases, Announcements, Book Launches</li>
+          <li>Archive page with category filter</li>
+          <li>Single post template with featured image and author byline</li>
+        </ul>
+      </div>
+
+      <div class="fc featured full">
+        <div class="fc-head"><div class="fc-title">Book Catalog</div><span class="badge g">Database-driven</span></div>
+        <div class="fc-body">Built as a WordPress Custom Post Type with ACF fields. Your team adds new books directly from the WordPress admin — no developer required. Books appear instantly in the catalog and search results.</div>
+        <ul class="fc-list">
+          <li>Each record: cover image, title, author, ISBN, publication date, description, purchase links, category</li>
+          <li>Search by title, author name, and category</li>
+          <li>Catalog archive page (grid layout)</li>
+          <li>Individual book detail page</li>
+        </ul>
+      </div>
+
+      <div class="fc featured full">
+        <div class="fc-head"><div class="fc-title">Author Directory</div><span class="badge g">Database-driven</span></div>
+        <div class="fc-body">Same CPT + ACF structure as the book catalog. Authors can be linked to their books so both directories stay connected.</div>
+        <ul class="fc-list">
+          <li>Each record: name, biography, photo, website URL, social links, books written</li>
+          <li>Search by name, genre, and state</li>
+          <li>Directory archive page (card layout)</li>
+          <li>Individual author profile page</li>
+        </ul>
+      </div>
+
+      <div class="fc sig full">
+        <div class="fc-head"><div class="fc-title">Mentor Wall — Signature Feature</div><span class="badge gold">Major Feature</span></div>
+        <div class="fc-body">The heart of KidsMark Press. Anyone can submit a tribute to a mentor. Nothing goes live without your team approving it first.</div>
+        <ul class="fc-list">
+          <li>Public submission form: mentor name, optional photo upload, city/state, tribute text, submitted by, date</li>
+          <li>Admin moderation queue inside WordPress dashboard — approve, edit, or reject each submission</li>
+          <li>Approved submissions appear on the public Mentor Wall page</li>
+          <li>Search mentors by name, browse by city/state</li>
+          <li>Individual mentor tribute page with a shareable URL (suitable for social sharing)</li>
+          <li>Share buttons on each tribute: Facebook, X/Twitter, copy link</li>
+          <li>Spam protection on submission form (honeypot + reCAPTCHA)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELIVERABLES -->
+  <div class="sec">
+    <div class="sec-tag">Included in Phase 1</div>
+    <h2 class="sec-title">What gets delivered</h2>
+    <div class="del-grid">
+      <div class="del-item"><span class="del-check">✓</span>Figma mockups for all pages — desktop + mobile — before build begins</div>
+      <div class="del-item"><span class="del-check">✓</span>Complete website build on WordPress + Elementor Pro (from approved Figma)</div>
+      <div class="del-item"><span class="del-check">✓</span>Book Catalog and Author Directory (Custom Post Types + ACF Pro)</div>
+      <div class="del-item"><span class="del-check">✓</span>Mentor Wall with submission form and admin moderation queue</div>
+      <div class="del-item"><span class="del-check">✓</span>Mobile responsive across all pages and screen sizes</div>
+      <div class="del-item"><span class="del-check">✓</span>SSL, Wordfence security, daily SiteGround backups configured</div>
+      <div class="del-item"><span class="del-check">✓</span>On-page SEO configuration (Rank Math Pro) for all pages</div>
+      <div class="del-item"><span class="del-check">✓</span>ADA accessibility basics — alt text, contrast, keyboard navigation</div>
+      <div class="del-item"><span class="del-check">✓</span>Full QA across desktop and mobile before launch</div>
+      <div class="del-item"><span class="del-check">✓</span>Deployment to production SiteGround hosting</div>
+      <div class="del-item"><span class="del-check">✓</span>Recorded admin training session + written staff documentation</div>
+      <div class="del-item"><span class="del-check">✓</span>30-day post-launch bug fix warranty (no charge)</div>
+      <div class="del-item"><span class="del-check">✓</span>All plugin licences registered in KidsMark Press's name</div>
+      <div class="del-item"><span class="del-check">✓</span>Figma design file handed over — yours to keep and reuse</div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 SUMMARY -->
+  <div class="phase2" style="margin-bottom:48px">
+    <div class="phase2-title">Phase 2 — $1,400 · Scoped when you're ready</div>
+    <div class="phase2-body">Everything in Phase 2 is designed so it layers on top of Phase 1 without a rebuild. User accounts slot into the existing site. The Mentee Directory uses the same CPT + ACF structure as the Author Directory. The Author Submission Portal uses the same Fluent Forms infrastructure as the Mentor Wall. Combined investment for both phases: <strong>$3,200 total.</strong></div>
+    <div class="phase2-grid">
+      <div class="phase2-item">Mentee Directory with admin-approved profiles</div>
+      <div class="phase2-item">Author Submission Portal with document uploads</div>
+      <div class="phase2-item">User accounts + 4 roles (Visitor, Author, Mentor, Admin)</div>
+      <div class="phase2-item">Global search across all content types</div>
+      <div class="phase2-item">Admin Dashboard — stats, data export, bulk actions</div>
+      <div class="phase2-item">Updated documentation for all new features</div>
+    </div>
+  </div>
+
+  <!-- SIGN OFF -->
+  <div class="sign-off">
+    <div>
+      <div class="sign-line"></div>
+      <div class="sign-label">Client — George Garza · KidsMark Press · Date</div>
+    </div>
+    <div>
+      <div class="sign-line"></div>
+      <div class="sign-label">Developer · Muhammad Umer Khan · Date</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
