@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirFlow Pro – HVAC & Plumbing Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #fff; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e8e8e8;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 68px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; color: #1a1a1a; text-decoration: none; }
+  .nav-logo-icon { width: 36px; height: 36px; background: #E84829; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .nav-logo-icon svg { width: 20px; height: 20px; fill: white; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: #444; text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: #E84829; }
+  .nav-cta { background: #E84829; color: white; border: none; padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: #c73a1f; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f1b2d 0%, #1a2e45 60%, #0d2135 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 120px 5% 80px;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px);
+  }
+  .hero-accent { position: absolute; right: -80px; top: 50%; transform: translateY(-50%); width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(232,72,41,0.18) 0%, transparent 70%); pointer-events: none; }
+  .hero-content { position: relative; max-width: 620px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,72,41,0.15); border: 1px solid rgba(232,72,41,0.4); color: #ff7a5a; border-radius: 100px; padding: 6px 16px; font-size: 13px; font-weight: 600; margin-bottom: 28px; }
+  .hero-badge span { width: 6px; height: 6px; background: #E84829; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+  .hero h1 { font-size: clamp(38px, 5vw, 64px); font-weight: 800; line-height: 1.1; color: #ffffff; margin-bottom: 20px; }
+  .hero h1 em { color: #E84829; font-style: normal; }
+  .hero p { font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 40px; max-width: 500px; }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: #E84829; color: white; padding: 16px 32px; border-radius: 10px; font-size: 16px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary:hover { background: #c73a1f; transform: translateY(-2px); }
+  .btn-secondary { background: transparent; color: white; padding: 16px 32px; border-radius: 10px; font-size: 16px; font-weight: 600; text-decoration: none; border: 2px solid rgba(255,255,255,0.25); cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+  .hero-stats { margin-top: 56px; display: flex; gap: 40px; }
+  .hero-stat { }
+  .hero-stat-num { font-size: 32px; font-weight: 800; color: white; }
+  .hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .hero-image-side { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); width: 45%; max-width: 560px; }
+  .hero-image-side img { width: 100%; border-radius: 20px; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
+  .hero-trust { display: flex; align-items: center; gap: 12px; margin-top: 32px; }
+  .hero-trust-avatars { display: flex; }
+  .hero-trust-avatars span { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #1a2e45; background: #2a4060; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; margin-left: -8px; }
+  .hero-trust-avatars span:first-child { margin-left: 0; }
+  .hero-trust-text { font-size: 13px; color: rgba(255,255,255,0.55); }
+  .hero-trust-text strong { color: #fff; }
+
+  /* TRUST BAR */
+  .trust-bar { background: #f8f8f6; border-bottom: 1px solid #ebebeb; padding: 20px 5%; display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
+  .trust-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #555; font-weight: 500; }
+  .trust-item svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+  /* SERVICES */
+  .section { padding: 96px 5%; }
+  .section-label { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #E84829; margin-bottom: 12px; }
+  .section-title { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; line-height: 1.15; color: #1a1a1a; margin-bottom: 16px; }
+  .section-subtitle { font-size: 17px; color: #666; max-width: 540px; line-height: 1.6; }
+  .section-header { margin-bottom: 56px; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .service-card {
+    border: 1.5px solid #efefef; border-radius: 16px; padding: 32px 28px;
+    transition: all 0.25s; cursor: default; background: #fff; position: relative; overflow: hidden;
+  }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #E84829; transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .service-card:hover { border-color: #E84829; box-shadow: 0 12px 40px rgba(232,72,41,0.1); transform: translateY(-4px); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { width: 52px; height: 52px; border-radius: 12px; background: #fff2ef; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .service-icon svg { width: 26px; height: 26px; stroke: #E84829; fill: none; stroke-width: 1.8; }
+  .service-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+  .service-card p { font-size: 14px; color: #666; line-height: 1.65; margin-bottom: 20px; }
+  .service-link { font-size: 14px; font-weight: 600; color: #E84829; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+  .service-link svg { width: 16px; height: 16px; stroke: #E84829; fill: none; stroke-width: 2; transition: transform 0.2s; }
+  .service-card:hover .service-link svg { transform: translateX(4px); }
+
+  /* WHY US */
+  .why-section { background: #0f1b2d; color: white; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .why-image { position: relative; }
+  .why-image img { width: 100%; border-radius: 20px; }
+  .why-badge-float { position: absolute; bottom: -20px; right: -20px; background: #E84829; border-radius: 16px; padding: 20px 24px; box-shadow: 0 20px 40px rgba(232,72,41,0.3); }
+  .why-badge-float .num { font-size: 36px; font-weight: 800; color: white; }
+  .why-badge-float .label { font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 2px; }
+  .why-content .section-title { color: white; }
+  .why-content .section-subtitle { color: rgba(255,255,255,0.6); }
+  .why-list { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .why-list li { display: flex; align-items: flex-start; gap: 16px; }
+  .why-check { width: 28px; height: 28px; border-radius: 50%; background: rgba(232,72,41,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .why-check svg { width: 14px; height: 14px; stroke: #E84829; fill: none; stroke-width: 2.5; }
+  .why-list-text h4 { font-size: 16px; font-weight: 600; color: white; margin-bottom: 4px; }
+  .why-list-text p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* LEAD FORM */
+  .form-section { background: #f8f8f6; }
+  .form-wrapper { max-width: 820px; margin: 0 auto; background: white; border-radius: 24px; padding: 56px 48px; box-shadow: 0 20px 60px rgba(0,0,0,0.07); border: 1px solid #efefef; }
+  .form-wrapper .section-title { text-align: center; }
+  .form-wrapper .section-subtitle { text-align: center; margin: 0 auto 40px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 13px; font-weight: 600; color: #444; }
+  .form-group input, .form-group select, .form-group textarea {
+    border: 1.5px solid #e0e0e0; border-radius: 10px; padding: 13px 16px;
+    font-size: 15px; font-family: 'Inter', sans-serif; color: #1a1a1a;
+    outline: none; transition: border-color 0.2s; background: #fafafa;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #E84829; background: white; }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-submit { grid-column: 1 / -1; margin-top: 8px; }
+  .form-submit button { width: 100%; background: #E84829; color: white; border: none; padding: 18px; border-radius: 12px; font-size: 17px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+  .form-submit button:hover { background: #c73a1f; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,72,41,0.3); }
+  .form-note { text-align: center; font-size: 13px; color: #888; margin-top: 16px; }
+
+  /* REVIEWS */
+  .reviews-section { }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .review-card { background: #f8f8f6; border-radius: 16px; padding: 28px; border: 1px solid #efefef; }
+  .review-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+  .review-stars svg { width: 16px; height: 16px; fill: #f59e0b; }
+  .review-card p { font-size: 15px; color: #444; line-height: 1.65; margin-bottom: 20px; font-style: italic; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: white; }
+  .review-author-info .name { font-weight: 600; font-size: 14px; }
+  .review-author-info .meta { font-size: 12px; color: #888; }
+
+  /* FOOTER */
+  footer { background: #0a1220; color: rgba(255,255,255,0.6); }
+  .footer-top { padding: 64px 5% 48px; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; }
+  .footer-brand { }
+  .footer-logo { font-size: 20px; font-weight: 800; color: white; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .footer-brand p { font-size: 14px; line-height: 1.7; max-width: 260px; margin-bottom: 20px; }
+  .footer-phone { font-size: 22px; font-weight: 800; color: #E84829; }
+  .footer-col h4 { font-size: 14px; font-weight: 700; color: white; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 14px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: #E84829; }
+  .footer-bottom { padding: 20px 5%; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+
+  /* EMERGENCY BAR */
+  .emergency-bar { background: #E84829; color: white; text-align: center; padding: 12px; font-size: 14px; font-weight: 600; position: sticky; top: 68px; z-index: 99; }
+  .emergency-bar a { color: white; text-decoration: none; font-weight: 800; }
+
+  @media (max-width: 900px) {
+    .hero-image-side { display: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .form-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z"/></svg>
+    </div>
+    AirFlow Pro
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why-us">Why Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get Free Quote</a>
+</nav>
+
+<!-- EMERGENCY BAR -->
+<div class="emergency-bar">
+  🔧 24/7 Emergency Service Available – Call Now: <a href="tel:+18005551234">(800) 555-1234</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span></span> Licensed &amp; Insured – Serving Your Area Since 2005
+    </div>
+    <h1>Expert HVAC &amp; Plumbing<br>You Can <em>Actually</em> Trust</h1>
+    <p>Fast response, honest pricing, and work that lasts. From emergency repairs to full system installs — we keep your home comfortable year-round.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">
+        Get My Free Quote
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="tel:+18005551234" class="btn-secondary">
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.9v2.02z"/></svg>
+        Call Us Now
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">5,200+</div>
+        <div class="hero-stat-label">Jobs Completed</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">20yr</div>
+        <div class="hero-stat-label">In Business</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">4.9★</div>
+        <div class="hero-stat-label">Average Rating</div>
+      </div>
+    </div>
+    <div class="hero-trust" style="margin-top:32px">
+      <div class="hero-trust-avatars">
+        <span>JM</span><span>SR</span><span>AL</span><span>PK</span>
+      </div>
+      <div class="hero-trust-text"><strong>500+ happy customers</strong> this year alone</div>
+    </div>
+  </div>
+
+  <!-- Hero image placeholder (replace with real photo) -->
+  <div class="hero-image-side">
+    <div style="background:rgba(255,255,255,0.05);border-radius:20px;border:1px solid rgba(255,255,255,0.1);height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:rgba(255,255,255,0.3)">
+      <svg viewBox="0 0 80 80" style="width:64px;height:64px;stroke:rgba(255,255,255,0.2);fill:none;stroke-width:1.5"><rect x="10" y="10" width="60" height="60" rx="8"/><circle cx="40" cy="35" r="14"/><path d="M26 65c0-7.7 6.3-14 14-14s14 6.3 14 14"/></svg>
+      <span style="font-size:14px">HVAC Technician Photo</span>
+      <span style="font-size:12px">Replace with your team image</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" style="stroke:#E84829;fill:none;stroke-width:2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Licensed &amp; Fully Insured
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" style="stroke:#E84829;fill:none;stroke-width:2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    Same-Day Service
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" style="stroke:#E84829;fill:none;stroke-width:2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    5-Star Rated on Google
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" style="stroke:#E84829;fill:none;stroke-width:2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Local Family-Owned
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" style="stroke:#E84829;fill:none;stroke-width:2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+    Upfront Pricing, No Surprises
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-header">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Complete Home Comfort Solutions</h2>
+    <p class="section-subtitle">From emergency fixes to planned upgrades — every job done right the first time.</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 7h1l2 3 2-3h1M9 17h6M12 3v4M5 8a7 7 0 0014 0"/><rect x="3" y="17" width="18" height="4" rx="2"/></svg>
+      </div>
+      <h3>AC Installation &amp; Repair</h3>
+      <p>New system installs, refrigerant recharge, compressor repair, and seasonal tune-ups. Keep cool without breaking the bank.</p>
+      <a href="#contact" class="service-link">Get a quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M8 5H5a2 2 0 00-2 2v3c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7a2 2 0 00-2-2h-3l-2-3h-4L8 5z"/></svg>
+      </div>
+      <h3>Heating Systems</h3>
+      <p>Furnace installations, heat pump services, boiler repair, and duct work. Stay warm when temperatures drop.</p>
+      <a href="#contact" class="service-link">Get a quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h3>Emergency Plumbing</h3>
+      <p>Burst pipes, severe leaks, blocked drains — we respond fast, 24 hours a day, 7 days a week, including holidays.</p>
+      <a href="#contact" class="service-link">Call now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22V12m0 0V2m0 10h10m-10 0H2"/></svg>
+      </div>
+      <h3>Drain &amp; Sewer Services</h3>
+      <p>Hydro-jetting, camera inspections, sewer line replacement. We diagnose the root cause, not just the symptom.</p>
+      <a href="#contact" class="service-link">Get a quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 5h18M3 12h18M3 19h18"/></svg>
+      </div>
+      <h3>Indoor Air Quality</h3>
+      <p>Air purifiers, humidifiers, UV light systems, and duct cleaning. Breathe better inside your own home.</p>
+      <a href="#contact" class="service-link">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <h3>Maintenance Plans</h3>
+      <p>Annual service agreements that extend the life of your systems. Priority scheduling, discounted repairs, and peace of mind.</p>
+      <a href="#contact" class="service-link">View plans <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section why-section" id="why-us">
+  <div class="why-grid">
+    <div class="why-image">
+      <div style="background:rgba(255,255,255,0.05);border-radius:20px;border:1px solid rgba(255,255,255,0.1);height:460px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:rgba(255,255,255,0.25)">
+        <svg viewBox="0 0 80 80" style="width:56px;height:56px;stroke:rgba(255,255,255,0.2);fill:none;stroke-width:1.5"><rect x="10" y="10" width="60" height="60" rx="8"/><circle cx="40" cy="35" r="14"/><path d="M26 65c0-7.7 6.3-14 14-14s14 6.3 14 14"/></svg>
+        <span style="font-size:13px">Team Photo Here</span>
+      </div>
+      <div class="why-badge-float">
+        <div class="num">20yr</div>
+        <div class="label">Trusted Experience</div>
+      </div>
+    </div>
+    <div class="why-content">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">We Show Up, Do the Job Right, and Stand Behind It</h2>
+      <p class="section-subtitle">No runarounds, no upsells, no surprises on the invoice. Just honest, professional work from people who care.</p>
+      <ul class="why-list">
+        <li>
+          <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="why-list-text">
+            <h4>Same-Day &amp; Emergency Response</h4>
+            <p>Most calls answered within 60 minutes. We don't leave you waiting when it matters most.</p>
+          </div>
+        </li>
+        <li>
+          <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="why-list-text">
+            <h4>Upfront, Flat-Rate Pricing</h4>
+            <p>You'll know the cost before any work begins. No hourly billing surprises at the end.</p>
+          </div>
+        </li>
+        <li>
+          <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="why-list-text">
+            <h4>All Work Fully Guaranteed</h4>
+            <p>Every repair comes with a 12-month labour guarantee. If it breaks again, we fix it free.</p>
+          </div>
+        </li>
+        <li>
+          <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="why-list-text">
+            <h4>Fully Licensed &amp; Background-Checked</h4>
+            <p>Every technician is screened, licensed, and insured. You can trust who you're letting in.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<section class="section form-section" id="contact">
+  <div class="form-wrapper">
+    <div class="section-label" style="text-align:center">Get in Touch</div>
+    <h2 class="section-title">Request Your Free Quote Today</h2>
+    <p class="section-subtitle">Fill out the form and we'll get back to you within 30 minutes during business hours.</p>
+    <form>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@email.com">
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>AC Repair / Installation</option>
+            <option>Heating / Furnace</option>
+            <option>Emergency Plumbing</option>
+            <option>Drain / Sewer</option>
+            <option>Indoor Air Quality</option>
+            <option>Maintenance Plan</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Best Time to Call</label>
+          <select>
+            <option value="">Select a time...</option>
+            <option>Morning (8am – 12pm)</option>
+            <option>Afternoon (12pm – 5pm)</option>
+            <option>Evening (5pm – 8pm)</option>
+            <option>Emergency – ASAP</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Describe Your Issue (Optional)</label>
+          <textarea placeholder="Tell us what's going on so we can come prepared..."></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit">Send My Free Quote Request →</button>
+        </div>
+      </div>
+    </form>
+    <p class="form-note">🔒 Your information is private and never sold. We'll only contact you about your request.</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section reviews-section" id="reviews">
+  <div class="section-header">
+    <div class="section-label">What Customers Say</div>
+    <h2 class="section-title">Trusted by Thousands of Homeowners</h2>
+    <p class="section-subtitle">Don't take our word for it. Here's what real customers have to say.</p>
+  </div>
+  <div class="reviews-grid">
+
+    <div class="review-card">
+      <div class="review-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p>"AC broke on the hottest day of the year. They were at my door within 90 minutes and had it running before lunch. Pricing was fair and the tech explained everything. Absolutely brilliant."</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background:#2563eb">MH</div>
+        <div class="review-author-info">
+          <div class="name">Mark H.</div>
+          <div class="meta">Homeowner · AC Repair</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p>"Burst pipe under the sink at 11pm. They picked up immediately and had someone here in 45 minutes. Pipe fixed, mess cleaned up, told me exactly what to watch for. I won't call anyone else."</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background:#059669">SR</div>
+        <div class="review-author-info">
+          <div class="name">Sarah R.</div>
+          <div class="meta">Homeowner · Emergency Plumbing</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p>"Got three quotes for a new furnace install. They weren't the cheapest but they were the most thorough — explained every option, gave a fair price, and finished a day early. Couldn't be happier."</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background:#7c3aed">TK</div>
+        <div class="review-author-info">
+          <div class="name">Tom K.</div>
+          <div class="meta">Homeowner · Heating Install</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div style="width:32px;height:32px;background:#E84829;border-radius:8px;display:flex;align-items:center;justify-content:center">
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white"><path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z"/></svg>
+        </div>
+        AirFlow Pro
+      </div>
+      <p>Licensed HVAC &amp; Plumbing specialists serving homeowners with honest, reliable service since 2005.</p>
+      <div class="footer-phone">(800) 555-1234</div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">AC Repair &amp; Install</a></li>
+        <li><a href="#">Heating Systems</a></li>
+        <li><a href="#">Emergency Plumbing</a></li>
+        <li><a href="#">Drain &amp; Sewer</a></li>
+        <li><a href="#">Air Quality</a></li>
+        <li><a href="#">Maintenance Plans</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Service Areas</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">Get a Free Quote</a></li>
+        <li><a href="#">Emergency Service</a></li>
+        <li><a href="#">Financing Options</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 AirFlow Pro HVAC &amp; Plumbing. All rights reserved.</span>
+    <span>Built for lead generation · Designed for conversions</span>
+  </div>
+</footer>
+
+</body>
+</html>
