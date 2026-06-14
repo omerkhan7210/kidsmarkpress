@@ -181,6 +181,7 @@
         gap: 2px;
         flex-shrink: 0;
       }
+
       .lang {
         font-size: 11px;
         letter-spacing: 0.1em;
@@ -193,6 +194,9 @@
         font-family: "DM Sans", sans-serif;
         font-weight: 400;
         transition: color 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
       }
       .lang.on {
         color: rgba(245, 243, 238, 0.88);
@@ -1391,12 +1395,36 @@
           <a href="#contact" data-n="n7">Contact</a>
         </nav>
         <div class="hr">
-          <button class="lang on" data-l="en">EN</button>
+          <button class="lang on" data-l="en">
+            <img
+              src="https://flagcdn.com/16x12/gb.png"
+              width="16"
+              height="12"
+              alt=""
+            />EN
+          </button>
           <span class="lsep">·</span>
-          <button class="lang" data-l="fr">FR</button>
+          <button class="lang" data-l="fr">
+            <img
+              src="https://flagcdn.com/16x12/fr.png"
+              width="16"
+              height="12"
+              alt=""
+            />FR
+          </button>
           <span class="lsep">·</span>
-          <button class="lang" data-l="de">DE</button>
+          <button class="lang" data-l="de">
+            <img
+              src="https://flagcdn.com/16x12/de.png"
+              width="16"
+              height="12"
+              alt=""
+            />DE
+          </button>
         </div>
+        <button class="burger" id="burger">
+          <span></span><span></span><span></span>
+        </button>
         <button class="burger" id="burger">
           <span></span><span></span><span></span>
         </button>
