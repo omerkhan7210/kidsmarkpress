@@ -1,0 +1,1900 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ifeile Investments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bone: #f7f5f1;
+        --ink: #0e0d0b;
+        --dim: #2a2926;
+        --muted: #7c7872;
+        --rule: #e0ddd8;
+        --bronze: #a8895a;
+        --bronze-pale: #c9aa7c;
+        --header: 58px;
+        --col: 1280px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      body {
+        background: var(--bone);
+        color: var(--ink);
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ─── HEADER ─────────────────────────────────── */
+
+      #hdr {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 300;
+        height: var(--header);
+        background: var(--ink);
+        display: flex;
+        align-items: center;
+        padding: 0 40px;
+        transition: background 0.3s;
+      }
+
+      .hdr-inner {
+        max-width: var(--col);
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .logo {
+        font-family: "DM Serif Display", serif;
+        font-size: 18px;
+        letter-spacing: 0.04em;
+        color: var(--bone);
+      }
+
+      .logo span {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background: var(--bronze);
+        border-radius: 50%;
+        margin-left: 3px;
+        vertical-align: middle;
+        position: relative;
+        top: -2px;
+      }
+
+      nav {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+
+      nav a {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(247, 245, 241, 0.4);
+        font-weight: 400;
+        transition: color 0.2s;
+      }
+      nav a:hover,
+      nav a.on {
+        color: var(--bone);
+      }
+
+      .langs {
+        display: flex;
+        gap: 2px;
+        align-items: center;
+      }
+
+      .lang {
+        font-family: "DM Sans", sans-serif;
+        font-size: 10.5px;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(247, 245, 241, 0.35);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px 7px;
+        transition: color 0.2s;
+      }
+      .lang.on {
+        color: var(--bone);
+      }
+
+      .burger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .burger span {
+        display: block;
+        width: 20px;
+        height: 1px;
+        background: rgba(247, 245, 241, 0.7);
+      }
+
+      /* ─── SHARED ──────────────────────────────────── */
+
+      .wrap {
+        max-width: var(--col);
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      .section-frame {
+        align-items: start;
+      }
+
+      .s-body {
+        min-width: 0;
+      }
+
+      .eyebrow {
+        display: block;
+        font-size: 9.5px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--bronze);
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(36px, 4vw, 52px);
+        font-weight: 400;
+        line-height: 1.1;
+        color: var(--ink);
+        margin-bottom: 8px;
+      }
+
+      .sub {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 52px;
+      }
+
+      p {
+        font-size: 14.5px;
+        color: var(--muted);
+        line-height: 1.9;
+        margin-bottom: 16px;
+      }
+      p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ─── REVEAL ANIM ─────────────────────────────── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ─── S1 HERO ─────────────────────────────────── */
+
+      #home {
+        min-height: 100vh;
+        background: var(--ink);
+        display: flex;
+        align-items: flex-end;
+        padding-top: var(--header);
+        border-bottom: 1px solid #222;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-bg-rule {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: calc(50% - 550px + 52px + 48px);
+        width: 1px;
+        background: rgba(247, 245, 241, 0.05);
+      }
+
+      .hero-inner {
+        max-width: var(--col);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 40px 80px;
+        align-items: end;
+      }
+
+      .hero-num {
+        writing-mode: vertical-rl;
+        font-size: 9.5px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--bronze);
+        font-weight: 500;
+        margin-bottom: 0;
+        align-self: end;
+        padding-bottom: 8px;
+      }
+
+      .hero-content {
+        padding-top: 140px;
+      }
+
+      .hero-pre {
+        display: block;
+        font-size: 9.5px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--bronze);
+        font-weight: 500;
+        margin-bottom: 40px;
+      }
+
+      h1 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(52px, 7.5vw, 96px);
+        font-weight: 400;
+        line-height: 1.02;
+        color: var(--bone);
+        margin-bottom: 52px;
+        max-width: 780px;
+      }
+
+      h1 em {
+        font-style: italic;
+      }
+
+      .hero-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        border-top: 1px solid rgba(247, 245, 241, 0.1);
+        padding-top: 40px;
+        margin-top: 0;
+      }
+
+      .hero-col-label {
+        display: block;
+        font-size: 9.5px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(247, 245, 241, 0.3);
+        margin-bottom: 14px;
+      }
+
+      .hero-col p {
+        font-size: 13.5px;
+        color: rgba(247, 245, 241, 0.45);
+        line-height: 1.85;
+        margin: 0;
+      }
+
+      .hero-cta-row {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        margin-top: 48px;
+      }
+
+      .cta {
+        display: inline-block;
+        padding: 12px 32px;
+        background: var(--bronze);
+        color: var(--ink);
+        font-size: 10.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 500;
+        transition: background 0.2s;
+      }
+      .cta:hover {
+        background: var(--bronze-pale);
+      }
+
+      .scroll-hint {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(247, 245, 241, 0.25);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .scroll-hint::before {
+        content: "";
+        display: block;
+        width: 32px;
+        height: 1px;
+        background: rgba(247, 245, 241, 0.15);
+      }
+
+      /* ─── S2 ABOUT ────────────────────────────────── */
+
+      #about {
+        padding: 100px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--rule);
+        border: 1px solid var(--rule);
+        margin-top: 0;
+      }
+
+      .about-cell {
+        background: var(--bone);
+        padding: 36px 32px 40px;
+      }
+
+      .cell-head {
+        font-family: "DM Serif Display", serif;
+        font-size: 22px;
+        color: var(--ink);
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+
+      .about-cell p {
+        font-size: 13.5px;
+      }
+
+      /* ─── S3 PHILOSOPHY ───────────────────────────── */
+
+      #philosophy {
+        padding: 100px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .phil-intro {
+        max-width: 540px;
+        margin-bottom: 56px;
+      }
+
+      .principles {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border-top: 1px solid var(--rule);
+      }
+
+      .principle {
+        padding: 36px 0 36px;
+        border-bottom: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .principle:nth-child(odd) {
+        padding-right: 48px;
+        border-right: 1px solid var(--rule);
+      }
+      .principle:nth-child(even) {
+        padding-left: 48px;
+      }
+
+      .p-idx {
+        font-family: "DM Serif Display", serif;
+        font-size: 32px;
+        color: var(--bronze);
+        opacity: 0.5;
+        line-height: 1;
+        padding-top: 2px;
+      }
+
+      .p-content h3 {
+        font-family: "DM Sans", sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 10px;
+      }
+
+      .p-content p {
+        font-size: 13px;
+        margin: 0;
+      }
+
+      /* ─── S4 STRATEGY ─────────────────────────────── */
+
+      #strategy {
+        padding: 100px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .strat-cols {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--rule);
+      }
+
+      .strat-col {
+        padding: 40px 36px 40px 0;
+        border-right: 1px solid var(--rule);
+      }
+      .strat-col:last-child {
+        border-right: none;
+        padding-left: 36px;
+        padding-right: 0;
+      }
+      .strat-col:nth-child(2) {
+        padding-left: 36px;
+        padding-right: 36px;
+      }
+
+      .strat-head {
+        font-family: "DM Serif Display", serif;
+        font-size: 26px;
+        color: var(--ink);
+        margin-bottom: 16px;
+        line-height: 1.15;
+      }
+
+      .strat-col p {
+        font-size: 13px;
+        margin-bottom: 24px;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .tag {
+        font-size: 9.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--bronze);
+        border: 1px solid var(--bronze);
+        padding: 4px 9px;
+        opacity: 0.75;
+      }
+
+      /* ─── S5 INCUBATOR ────────────────────────────── */
+
+      #incubator {
+        background: var(--ink);
+        padding: 100px 0;
+        border-bottom: 1px solid #222;
+      }
+
+      #incubator .eyebrow {
+        color: rgba(168, 137, 90, 0.75);
+      }
+      #incubator h2 {
+        color: var(--bone);
+      }
+      #incubator .sub {
+        color: rgba(247, 245, 241, 0.25);
+      }
+      #incubator p {
+        color: rgba(247, 245, 241, 0.45);
+      }
+      #incubator .s-num {
+        color: rgba(168, 137, 90, 0.5);
+      }
+
+      .incubator-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+        margin-bottom: 64px;
+      }
+
+      .inc-intro p {
+        max-width: 420px;
+      }
+
+      .inc-sectors {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 0;
+      }
+
+      .sector-item {
+        display: flex;
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(247, 245, 241, 0.08);
+        gap: 16px;
+        cursor: default;
+        transition: border-color 0.2s;
+      }
+      .sector-item:first-child {
+        border-top: 1px solid rgba(247, 245, 241, 0.08);
+      }
+
+      .sector-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--bronze);
+        opacity: 0.6;
+        flex-shrink: 0;
+      }
+
+      .sector-item span {
+        font-size: 12.5px;
+        letter-spacing: 0.06em;
+        color: rgba(247, 245, 241, 0.6);
+        font-weight: 300;
+      }
+
+      .inc-model {
+        border-top: 1px solid rgba(247, 245, 241, 0.08);
+        padding-top: 52px;
+      }
+
+      .model-label {
+        display: block;
+        font-size: 9.5px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(247, 245, 241, 0.25);
+        margin-bottom: 32px;
+      }
+
+      .model-cols {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 48px;
+      }
+
+      .model-col h4 {
+        font-family: "DM Serif Display", serif;
+        font-size: 22px;
+        color: var(--bone);
+        font-weight: 400;
+        margin-bottom: 10px;
+        line-height: 1.15;
+      }
+
+      .model-col p {
+        font-size: 12.5px;
+        color: rgba(247, 245, 241, 0.35);
+        margin: 0;
+      }
+
+      /* ─── S6 PRESENCE ─────────────────────────────── */
+
+      #presence {
+        padding: 100px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .regions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--rule);
+      }
+
+      .region {
+        padding: 40px 36px 40px 0;
+        border-right: 1px solid var(--rule);
+      }
+      .region:last-child {
+        border-right: none;
+        padding-left: 36px;
+        padding-right: 0;
+      }
+      .region:nth-child(2) {
+        padding-left: 36px;
+        padding-right: 36px;
+      }
+
+      .region-kicker {
+        display: block;
+        font-size: 9.5px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--bronze);
+        margin-bottom: 12px;
+      }
+
+      .region-head {
+        font-family: "DM Serif Display", serif;
+        font-size: 30px;
+        color: var(--ink);
+        font-weight: 400;
+        margin-bottom: 14px;
+        line-height: 1.1;
+      }
+
+      .region p {
+        font-size: 13px;
+      }
+
+      /* ─── S7 CONTACT ──────────────────────────────── */
+
+      #contact {
+        background: var(--dim);
+        padding: 100px 0;
+        border-bottom: none;
+      }
+
+      #contact .eyebrow {
+        color: rgba(168, 137, 90, 0.75);
+      }
+      #contact h2 {
+        color: var(--bone);
+      }
+      #contact .sub {
+        color: rgba(247, 245, 241, 0.25);
+      }
+      #contact .s-num {
+        color: rgba(168, 137, 90, 0.5);
+      }
+
+      .contact-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+
+      .contact-left {
+      }
+
+      .c-detail {
+        display: block;
+        font-size: 13px;
+        color: rgba(247, 245, 241, 0.35);
+        margin-bottom: 6px;
+      }
+      .c-detail strong {
+        color: rgba(247, 245, 241, 0.7);
+        font-weight: 400;
+      }
+      .c-detail a {
+        color: var(--bronze);
+      }
+
+      .contact-note {
+        margin-top: 36px;
+        padding-top: 36px;
+        border-top: 1px solid rgba(247, 245, 241, 0.08);
+        font-size: 12.5px;
+        color: rgba(247, 245, 241, 0.25);
+        line-height: 1.8;
+        max-width: 320px;
+      }
+
+      form {
+        display: grid;
+        gap: 24px;
+      }
+
+      .fg {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .fg label {
+        font-size: 9.5px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(247, 245, 241, 0.3);
+        font-weight: 400;
+      }
+
+      .fg input,
+      .fg select,
+      .fg textarea {
+        background: none;
+        border: none;
+        border-bottom: 1px solid rgba(247, 245, 241, 0.12);
+        padding: 10px 0;
+        font-size: 14px;
+        color: var(--bone);
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        outline: none;
+        transition: border-color 0.2s;
+        width: 100%;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+      .fg select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(168,137,90,.7)'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 2px center;
+        padding-right: 20px;
+      }
+      .fg input:focus,
+      .fg select:focus,
+      .fg textarea:focus {
+        border-bottom-color: var(--bronze);
+      }
+      .fg textarea {
+        resize: vertical;
+        min-height: 88px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .gdpr {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        margin-top: 4px;
+      }
+      .gdpr input[type="checkbox"] {
+        margin-top: 4px;
+        flex-shrink: 0;
+        accent-color: var(--bronze);
+        width: 14px;
+        height: 14px;
+      }
+      .gdpr label {
+        font-size: 11.5px;
+        color: rgba(247, 245, 241, 0.3);
+        line-height: 1.65;
+      }
+      .gdpr a {
+        color: var(--bronze);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .submit {
+        display: inline-block;
+        padding: 12px 36px;
+        background: var(--bronze);
+        color: var(--ink);
+        font-size: 10.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+        transition: background 0.2s;
+        width: fit-content;
+      }
+      .submit:hover {
+        background: var(--bronze-pale);
+      }
+
+      /* ─── FOOTER ──────────────────────────────────── */
+
+      footer {
+        background: var(--ink);
+        padding: 24px 40px;
+        border-top: 1px solid #1a1916;
+      }
+
+      .footer-inner {
+        max-width: var(--col);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .footer-copy {
+        font-size: 11px;
+        color: rgba(247, 245, 241, 0.2);
+        letter-spacing: 0.04em;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-links a {
+        font-size: 10.5px;
+        color: rgba(247, 245, 241, 0.2);
+        letter-spacing: 0.06em;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: rgba(247, 245, 241, 0.55);
+      }
+
+      /* ─── TOAST ───────────────────────────────────── */
+
+      #toast {
+        position: fixed;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: var(--bronze);
+        color: var(--ink);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 11px 28px;
+        opacity: 0;
+        transition: all 0.3s;
+        pointer-events: none;
+        z-index: 999;
+        font-weight: 500;
+      }
+
+      /* ─── MOBILE ──────────────────────────────────── */
+
+      @media (max-width: 900px) {
+        h1 {
+          font-size: clamp(44px, 10vw, 72px);
+        }
+        h2 {
+          font-size: clamp(30px, 6vw, 44px);
+        }
+        .section-frame {
+          grid-template-columns: 1fr;
+        }
+        .s-num {
+          display: none;
+        }
+        .hero-inner {
+          grid-template-columns: 1fr;
+        }
+        .hero-num {
+          display: none;
+        }
+        nav {
+          display: none;
+        }
+        nav.open {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          top: var(--header);
+          left: 0;
+          right: 0;
+          background: var(--ink);
+          padding: 24px 32px;
+          gap: 18px;
+          border-top: 1px solid #1a1916;
+        }
+        .burger {
+          display: flex;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .principles {
+          grid-template-columns: 1fr;
+        }
+        .principle {
+          padding: 28px 0 !important;
+          border-right: none !important;
+        }
+        .strat-cols {
+          grid-template-columns: 1fr;
+        }
+        .strat-col {
+          padding: 28px 0 !important;
+          border-right: none !important;
+          border-bottom: 1px solid var(--rule);
+        }
+        .incubator-top {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .model-cols {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .regions {
+          grid-template-columns: 1fr;
+        }
+        .region {
+          padding: 28px 0 !important;
+          border-right: none !important;
+          border-bottom: 1px solid rgba(247, 245, 241, 0.1);
+        }
+        .contact-layout {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .wrap {
+          padding: 0 24px;
+        }
+        #hdr {
+          padding: 0 24px;
+        }
+        footer {
+          padding: 24px;
+        }
+        .hero-cols {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="hdr">
+      <div class="hdr-inner">
+        <a href="#home" class="logo">Ifeile<span></span></a>
+        <nav id="nav">
+          <a href="#home" data-n="nav_home" class="on">Home</a>
+          <a href="#about" data-n="nav_about">About</a>
+          <a href="#philosophy" data-n="nav_phil">Philosophy</a>
+          <a href="#strategy" data-n="nav_strat">Strategy</a>
+          <a href="#incubator" data-n="nav_inc">Incubator</a>
+          <a href="#presence" data-n="nav_pres">Presence</a>
+          <a href="#contact" data-n="nav_cont">Contact</a>
+        </nav>
+        <div class="langs">
+          <button class="lang on" data-l="en">EN</button>
+          <button class="lang" data-l="fr">FR</button>
+          <button class="lang" data-l="de">DE</button>
+        </div>
+        <button class="burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- S1 ─ HERO -->
+    <section id="home">
+      <div class="hero-bg-rule" aria-hidden="true"></div>
+      <div class="hero-inner reveal">
+        <div class="hero-content">
+          <span class="hero-pre" data-n="hero_pre"
+            >Luxembourg · Private Investment Office</span
+          >
+          <h1 data-n="hero_h1">
+            Quiet Capital.<br /><em>Enduring</em> Assets.
+          </h1>
+          <div class="hero-cols">
+            <div class="hero-col">
+              <span class="hero-col-label" data-n="hero_label1"
+                >The Office</span
+              >
+              <p data-n="hero_p1">
+                A Luxembourg-based family investment office combining
+                disciplined real estate underwriting with selective early-stage
+                venture conviction.
+              </p>
+            </div>
+            <div class="hero-col">
+              <span class="hero-col-label" data-n="hero_label2"
+                >The Approach</span
+              >
+              <p data-n="hero_p2">
+                We operate with discretion, flexibility, and long-term focus —
+                with strong fundamentals, rigorous capital preservation, and
+                conviction in our partnerships.
+              </p>
+            </div>
+          </div>
+          <div class="hero-cta-row">
+            <a href="#contact" class="cta" data-n="hero_cta">Contact Us</a>
+            <span class="scroll-hint" data-n="scroll_hint"
+              >Scroll to explore</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S2 ─ ABOUT -->
+    <section id="about">
+      <div class="wrap">
+        <div class="section-frame reveal">
+          <div class="s-body">
+            <span class="eyebrow" data-n="s2_ey">About Us</span>
+            <h2 data-n="s2_h">A Private Investment Office</h2>
+            <span class="sub" data-n="s2_sub"
+              >Who We Are · Activity · Stewardship</span
+            >
+            <div class="about-grid">
+              <div class="about-cell">
+                <div class="cell-head" data-n="a1_h">Who We Are</div>
+                <p data-n="a1_p">
+                  A Luxembourg-based family office dedicated to long-term value
+                  creation. We combine institutional discipline with
+                  entrepreneurial conviction — operating across real estate and
+                  early-stage venture, built on decades of trusted
+                  relationships.
+                </p>
+              </div>
+              <div class="about-cell">
+                <div class="cell-head" data-n="a2_h">Areas of Activity</div>
+                <p data-n="a2_p">
+                  Commercial and residential real estate across Europe and MENA.
+                  Early-stage venture through the Ifeile Incubator. Cross-border
+                  partnerships and co-investment structures with aligned
+                  institutional partners.
+                </p>
+              </div>
+              <div class="about-cell">
+                <div class="cell-head" data-n="a3_h">
+                  Relationships &amp; Stewardship
+                </div>
+                <p data-n="a3_p">
+                  We build long-term relationships with partners, operators, and
+                  stakeholders — guided by local expertise, responsible
+                  ownership, and a commitment to principled, discreet capital
+                  management.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S3 ─ PHILOSOPHY -->
+    <section id="philosophy">
+      <div class="wrap">
+        <div class="section-frame reveal">
+          <div class="s-body">
+            <span class="eyebrow" data-n="s3_ey">Investment Philosophy</span>
+            <h2 data-n="s3_h">Disciplined. Private. Long-Term.</h2>
+            <span class="sub" data-n="s3_sub"
+              >Our Approach · 5 Guiding Principles</span
+            >
+            <div class="phil-intro">
+              <p data-n="s3_p">
+                Our approach integrates institutional discipline with
+                entrepreneurial flexibility. We invest selectively, underwrite
+                rigorously, and remain committed to partnerships that endure
+                beyond individual transactions.
+              </p>
+            </div>
+            <div class="principles">
+              <div class="principle">
+                <div class="p-idx">01</div>
+                <div class="p-content">
+                  <h3 data-n="p1_h">Conservative Capital Management</h3>
+                  <p data-n="p1_p">
+                    Capital preservation is the first obligation. We underwrite
+                    to downside scenarios and resist leverage beyond what
+                    fundamentals justify.
+                  </p>
+                </div>
+              </div>
+              <div class="principle">
+                <div class="p-idx">02</div>
+                <div class="p-content">
+                  <h3 data-n="p2_h">Rigorous Due Diligence</h3>
+                  <p data-n="p2_p">
+                    Every investment is subject to structured, independent
+                    review across legal, financial, and operational dimensions
+                    before any commitment is made.
+                  </p>
+                </div>
+              </div>
+              <div class="principle">
+                <div class="p-idx">03</div>
+                <div class="p-content">
+                  <h3 data-n="p3_h">Strategic Market Selection</h3>
+                  <p data-n="p3_p">
+                    We focus on markets where demographic trends, infrastructure
+                    development, and regulatory clarity support durable returns
+                    over time.
+                  </p>
+                </div>
+              </div>
+              <div class="principle">
+                <div class="p-idx">04</div>
+                <div class="p-content">
+                  <h3 data-n="p4_h">Long-Term Partnership Orientation</h3>
+                  <p data-n="p4_p">
+                    We seek co-investors, operators, and founders aligned with
+                    patient capital. Short-term extraction is structurally
+                    incompatible with how we deploy.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="principle"
+                style="
+                  grid-column: 1 / -1;
+                  border-right: none;
+                  padding-right: 0;
+                "
+              >
+                <div class="p-idx">05</div>
+                <div class="p-content">
+                  <h3 data-n="p5_h">Sustainable Value Creation</h3>
+                  <p data-n="p5_p">
+                    Returns are a consequence of responsible ownership — not its
+                    substitute. Environmental and social considerations are
+                    integrated from underwriting through exit.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S4 ─ STRATEGY -->
+    <section id="strategy">
+      <div class="wrap">
+        <div class="section-frame reveal">
+          <div class="s-body">
+            <span class="eyebrow" data-n="s4_ey">Investment Strategy</span>
+            <h2 data-n="s4_h">Real Estate Investments</h2>
+            <span class="sub" data-n="s4_sub"
+              >Residential · Commercial · Strategic Partnerships</span
+            >
+            <div class="strat-cols">
+              <div class="strat-col">
+                <div class="strat-head" data-n="st1_h">Residential RE</div>
+                <p data-n="st1_p">
+                  Multifamily, residential developments, urban regeneration, and
+                  income-generating assets across European and MENA markets.
+                  Emphasis on strong fundamentals and long-term cashflow.
+                </p>
+                <div class="tag-row">
+                  <span class="tag" data-n="t1">Multifamily</span>
+                  <span class="tag" data-n="t2">Urban Regen.</span>
+                  <span class="tag" data-n="t3">Income Assets</span>
+                </div>
+              </div>
+              <div class="strat-col">
+                <div class="strat-head" data-n="st2_h">Commercial RE</div>
+                <p data-n="st2_p">
+                  Office, logistics, retail, hospitality, and mixed-use assets
+                  with strong fundamental demand drivers. Selective exposure
+                  across tier-one and growth markets.
+                </p>
+                <div class="tag-row">
+                  <span class="tag" data-n="t4">Office</span>
+                  <span class="tag" data-n="t5">Logistics</span>
+                  <span class="tag" data-n="t6">Hospitality</span>
+                </div>
+              </div>
+              <div class="strat-col">
+                <div class="strat-head" data-n="st3_h">
+                  Strategic Partnerships
+                </div>
+                <p data-n="st3_p">
+                  Co-investment structures with operators, developers, and
+                  institutional partners — where aligned incentives and shared
+                  expertise drive outcomes beyond capital alone.
+                </p>
+                <div class="tag-row">
+                  <span class="tag" data-n="t7">Operators</span>
+                  <span class="tag" data-n="t8">Developers</span>
+                  <span class="tag" data-n="t9">Institutional</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S5 ─ INCUBATOR -->
+    <section id="incubator">
+      <div class="wrap">
+        <div class="section-frame reveal">
+          <div class="s-body">
+            <span class="eyebrow" data-n="s5_ey">Ifeile Incubator</span>
+            <h2 data-n="s5_h">Early-Stage Venture</h2>
+            <span class="sub" data-n="s5_sub"
+              >Health · Fintech · AI · Digital Infrastructure</span
+            >
+            <div class="incubator-top">
+              <div class="inc-intro">
+                <p data-n="s5_p1">
+                  The Ifeile Incubator deploys patient capital into early-stage
+                  companies operating at the intersection of technology and
+                  real-world infrastructure.
+                </p>
+                <p data-n="s5_p2">
+                  We supplement investment with operational guidance, strategic
+                  networks, and long-term alignment — not just capital. Our
+                  partnership-driven model means we share the risk, the work,
+                  and the outcome.
+                </p>
+              </div>
+              <div class="inc-sectors">
+                <div class="sector-item">
+                  <div class="sector-dot"></div>
+                  <span data-n="sec1">Health Technology</span>
+                </div>
+                <div class="sector-item">
+                  <div class="sector-dot"></div>
+                  <span data-n="sec2"
+                    >Fintech &amp; Financial Infrastructure</span
+                  >
+                </div>
+                <div class="sector-item">
+                  <div class="sector-dot"></div>
+                  <span data-n="sec3">AI-Powered Solutions</span>
+                </div>
+                <div class="sector-item">
+                  <div class="sector-dot"></div>
+                  <span data-n="sec4">Digital Infrastructure</span>
+                </div>
+                <div class="sector-item">
+                  <div class="sector-dot"></div>
+                  <span data-n="sec5">Emerging Technologies</span>
+                </div>
+              </div>
+            </div>
+            <div class="inc-model">
+              <span class="model-label" data-n="model_l"
+                >Our Incubation Model</span
+              >
+              <div class="model-cols">
+                <div class="model-col">
+                  <h4 data-n="mc1_h">Patient Capital</h4>
+                  <p data-n="mc1_p">
+                    Long-term investment horizons with no artificial exit
+                    pressure. We allow time for genuine value to develop.
+                  </p>
+                </div>
+                <div class="model-col">
+                  <h4 data-n="mc2_h">Operational Guidance</h4>
+                  <p data-n="mc2_p">
+                    Direct support from experienced operators who have navigated
+                    comparable challenges across sectors and geographies.
+                  </p>
+                </div>
+                <div class="model-col">
+                  <h4 data-n="mc3_h">Strategic Networks</h4>
+                  <p data-n="mc3_p">
+                    Access to institutional partners, regional operators, and
+                    investment relationships built over decades of private
+                    market activity.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S6 ─ PRESENCE -->
+    <section id="presence">
+      <div class="wrap">
+        <div class="section-frame reveal">
+          <div class="s-body">
+            <span class="eyebrow" data-n="s6_ey">Geographic Presence</span>
+            <h2 data-n="s6_h">An International Perspective</h2>
+            <span class="sub" data-n="s6_sub">Europe · GCC · North Africa</span>
+            <div class="regions">
+              <div class="region">
+                <span class="region-kicker" data-n="r1_k"
+                  >Western &amp; Southern Europe</span
+                >
+                <div class="region-head" data-n="r1_h">Europe</div>
+                <p data-n="r1_p">
+                  Our primary base of operations. Luxembourg as a financial
+                  centre, complemented by active investment across Western and
+                  Southern European real estate markets.
+                </p>
+              </div>
+              <div class="region">
+                <span class="region-kicker" data-n="r2_k"
+                  >Gulf Cooperation Council</span
+                >
+                <div class="region-head" data-n="r2_h">GCC Markets</div>
+                <p data-n="r2_p">
+                  Growing capital flows and infrastructure investment across
+                  Gulf markets create selective opportunities aligned with our
+                  long-term, partnership-driven approach.
+                </p>
+              </div>
+              <div class="region">
+                <span class="region-kicker" data-n="r3_k"
+                  >Growth Corridors</span
+                >
+                <div class="region-head" data-n="r3_h">North Africa</div>
+                <p data-n="r3_p">
+                  Demographic momentum and infrastructure demand across North
+                  African corridors present early-stage opportunities consistent
+                  with our incubation and real estate thesis.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S7 ─ CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-frame reveal">
+          <div class="s-body">
+            <span class="eyebrow" data-n="s7_ey">Contact</span>
+            <h2 data-n="s7_h">Enquiries</h2>
+            <span class="sub" data-n="s7_sub"
+              >Ifeile Investments · Luxembourg</span
+            >
+            <div class="contact-layout">
+              <div class="contact-left">
+                <span class="c-detail"
+                  ><strong data-n="cd1">Ifeile Investments S.A.</strong></span
+                >
+                <span class="c-detail" data-n="cd2"
+                  >Luxembourg, Grand Duchy of Luxembourg</span
+                >
+                <span class="c-detail"
+                  ><a href="mailto:contact@ifeile.lu"
+                    >contact@ifeile.lu</a
+                  ></span
+                >
+                <p class="contact-note" data-n="c_note">
+                  For partnership opportunities, investment enquiries, or
+                  general correspondence. All requests are handled with strict
+                  confidentiality.
+                </p>
+              </div>
+              <form onsubmit="doSubmit(event)">
+                <div class="form-row">
+                  <div class="fg">
+                    <label data-n="f1">Full Name</label
+                    ><input type="text" required placeholder=" " />
+                  </div>
+                  <div class="fg">
+                    <label data-n="f2">Organisation</label
+                    ><input type="text" placeholder=" " />
+                  </div>
+                </div>
+                <div class="fg">
+                  <label data-n="f3">Email Address</label
+                  ><input type="email" required placeholder=" " />
+                </div>
+                <div class="fg">
+                  <label data-n="f4">Nature of Enquiry</label>
+                  <select required>
+                    <option value="" disabled selected></option>
+                    <option value="p" data-n-o="fo1">
+                      Partnership Opportunity
+                    </option>
+                    <option value="g" data-n-o="fo2">General Enquiry</option>
+                  </select>
+                </div>
+                <div class="fg">
+                  <label data-n="f5">Message</label
+                  ><textarea rows="3" required></textarea>
+                </div>
+                <div class="gdpr">
+                  <input type="checkbox" id="gdpr" required />
+                  <label for="gdpr" data-n="f_gdpr"
+                    >I consent to Ifeile Investments processing my personal data
+                    in accordance with GDPR and the
+                    <a href="#" onclick="return false;">Privacy Policy</a
+                    >.</label
+                  >
+                </div>
+                <button type="submit" class="submit" data-n="f_sub">
+                  Send Enquiry
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-copy" data-n="fc"
+          >© 2026 Ifeile Investments S.A. — Luxembourg</span
+        >
+        <div class="footer-links">
+          <a href="#" data-n="fl1">Legal Notice</a>
+          <a href="#" data-n="fl2">Privacy Policy / GDPR</a>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toast">Message sent — we'll be in touch.</div>
+
+    <script>
+      const T = {
+        en: {
+          nav_home: "Home",
+          nav_about: "About",
+          nav_phil: "Philosophy",
+          nav_strat: "Strategy",
+          nav_inc: "Incubator",
+          nav_pres: "Presence",
+          nav_cont: "Contact",
+          s_home: "S1",
+          s_about: "S2",
+          s_phil: "S3",
+          s_strat: "S4",
+          s_inc: "S5",
+          s_pres: "S6",
+          s_cont: "S7",
+          hero_pre: "Luxembourg · Private Investment Office",
+          hero_h1: "Quiet Capital.<br><em>Enduring</em> Assets.",
+          hero_label1: "The Office",
+          hero_label2: "The Approach",
+          hero_p1:
+            "A Luxembourg-based family investment office combining disciplined real estate underwriting with selective early-stage venture conviction.",
+          hero_p2:
+            "We operate with discretion, flexibility, and long-term focus — with strong fundamentals, rigorous capital preservation, and conviction in our partnerships.",
+          hero_cta: "Contact Us",
+          scroll_hint: "Scroll to explore",
+          s2_ey: "About Us",
+          s2_h: "A Private Investment Office",
+          s2_sub: "Who We Are · Activity · Stewardship",
+          a1_h: "Who We Are",
+          a1_p: "A Luxembourg-based family office dedicated to long-term value creation. We combine institutional discipline with entrepreneurial conviction — operating across real estate and early-stage venture, built on decades of trusted relationships.",
+          a2_h: "Areas of Activity",
+          a2_p: "Commercial and residential real estate across Europe and MENA. Early-stage venture through the Ifeile Incubator. Cross-border partnerships and co-investment structures with aligned institutional partners.",
+          a3_h: "Relationships & Stewardship",
+          a3_p: "We build long-term relationships with partners, operators, and stakeholders — guided by local expertise, responsible ownership, and a commitment to principled, discreet capital management.",
+          s3_ey: "Investment Philosophy",
+          s3_h: "Disciplined. Private. Long-Term.",
+          s3_sub: "Our Approach · 5 Guiding Principles",
+          s3_p: "Our approach integrates institutional discipline with entrepreneurial flexibility. We invest selectively, underwrite rigorously, and remain committed to partnerships that endure beyond individual transactions.",
+          p1_h: "Conservative Capital Management",
+          p1_p: "Capital preservation is the first obligation. We underwrite to downside scenarios and resist leverage beyond what fundamentals justify.",
+          p2_h: "Rigorous Due Diligence",
+          p2_p: "Every investment is subject to structured, independent review across legal, financial, and operational dimensions before any commitment is made.",
+          p3_h: "Strategic Market Selection",
+          p3_p: "We focus on markets where demographic trends, infrastructure development, and regulatory clarity support durable returns over time.",
+          p4_h: "Long-Term Partnership Orientation",
+          p4_p: "We seek co-investors, operators, and founders aligned with patient capital. Short-term extraction is structurally incompatible with how we deploy.",
+          p5_h: "Sustainable Value Creation",
+          p5_p: "Returns are a consequence of responsible ownership — not its substitute. Environmental and social considerations are integrated from underwriting through exit.",
+          s4_ey: "Investment Strategy",
+          s4_h: "Real Estate Investments",
+          s4_sub: "Residential · Commercial · Strategic Partnerships",
+          st1_h: "Residential RE",
+          st1_p:
+            "Multifamily, residential developments, urban regeneration, and income-generating assets across European and MENA markets. Emphasis on strong fundamentals and long-term cashflow.",
+          t1: "Multifamily",
+          t2: "Urban Regen.",
+          t3: "Income Assets",
+          st2_h: "Commercial RE",
+          st2_p:
+            "Office, logistics, retail, hospitality, and mixed-use assets with strong fundamental demand drivers. Selective exposure across tier-one and growth markets.",
+          t4: "Office",
+          t5: "Logistics",
+          t6: "Hospitality",
+          st3_h: "Strategic Partnerships",
+          st3_p:
+            "Co-investment structures with operators, developers, and institutional partners — where aligned incentives and shared expertise drive outcomes beyond capital alone.",
+          t7: "Operators",
+          t8: "Developers",
+          t9: "Institutional",
+          s5_ey: "Ifeile Incubator",
+          s5_h: "Early-Stage Venture",
+          s5_sub: "Health · Fintech · AI · Digital Infrastructure",
+          s5_p1:
+            "The Ifeile Incubator deploys patient capital into early-stage companies operating at the intersection of technology and real-world infrastructure.",
+          s5_p2:
+            "We supplement investment with operational guidance, strategic networks, and long-term alignment — not just capital. Our partnership-driven model means we share the risk, the work, and the outcome.",
+          sec1: "Health Technology",
+          sec2: "Fintech & Financial Infrastructure",
+          sec3: "AI-Powered Solutions",
+          sec4: "Digital Infrastructure",
+          sec5: "Emerging Technologies",
+          model_l: "Our Incubation Model",
+          mc1_h: "Patient Capital",
+          mc1_p:
+            "Long-term investment horizons with no artificial exit pressure. We allow time for genuine value to develop.",
+          mc2_h: "Operational Guidance",
+          mc2_p:
+            "Direct support from experienced operators who have navigated comparable challenges across sectors and geographies.",
+          mc3_h: "Strategic Networks",
+          mc3_p:
+            "Access to institutional partners, regional operators, and investment relationships built over decades of private market activity.",
+          s6_ey: "Geographic Presence",
+          s6_h: "An International Perspective",
+          s6_sub: "Europe · GCC · North Africa",
+          r1_k: "Western & Southern Europe",
+          r1_h: "Europe",
+          r1_p: "Our primary base of operations. Luxembourg as a financial centre, complemented by active investment across Western and Southern European real estate markets.",
+          r2_k: "Gulf Cooperation Council",
+          r2_h: "GCC Markets",
+          r2_p: "Growing capital flows and infrastructure investment across Gulf markets create selective opportunities aligned with our long-term, partnership-driven approach.",
+          r3_k: "Growth Corridors",
+          r3_h: "North Africa",
+          r3_p: "Demographic momentum and infrastructure demand across North African corridors present early-stage opportunities consistent with our incubation and real estate thesis.",
+          s7_ey: "Contact",
+          s7_h: "Enquiries",
+          s7_sub: "Ifeile Investments · Luxembourg",
+          cd1: "Ifeile Investments S.A.",
+          cd2: "Luxembourg, Grand Duchy of Luxembourg",
+          c_note:
+            "For partnership opportunities, investment enquiries, or general correspondence. All requests are handled with strict confidentiality.",
+          f1: "Full Name",
+          f2: "Organisation",
+          f3: "Email Address",
+          f4: "Nature of Enquiry",
+          fo1: "Partnership Opportunity",
+          fo2: "General Enquiry",
+          f5: "Message",
+          f_gdpr:
+            "I consent to Ifeile Investments processing my personal data in accordance with GDPR and the Privacy Policy.",
+          f_sub: "Send Enquiry",
+          fc: "© 2026 Ifeile Investments S.A. — Luxembourg",
+          fl1: "Legal Notice",
+          fl2: "Privacy Policy / GDPR",
+        },
+        fr: {
+          nav_home: "Accueil",
+          nav_about: "À Propos",
+          nav_phil: "Philosophie",
+          nav_strat: "Stratégie",
+          nav_inc: "Incubateur",
+          nav_pres: "Présence",
+          nav_cont: "Contact",
+          s_home: "S1",
+          s_about: "S2",
+          s_phil: "S3",
+          s_strat: "S4",
+          s_inc: "S5",
+          s_pres: "S6",
+          s_cont: "S7",
+          hero_pre: "Luxembourg · Bureau d'Investissement Privé",
+          hero_h1: "Un Capital Discret.<br><em>Des Actifs</em> Durables.",
+          hero_label1: "Le Bureau",
+          hero_label2: "L'Approche",
+          hero_p1:
+            "Un bureau d'investissement familial basé à Luxembourg, combinant rigueur immobilière disciplinée avec une conviction sélective en capital-risque.",
+          hero_p2:
+            "Nous opérons avec discrétion, flexibilité et une vision à long terme — avec des fondamentaux solides et une conviction dans nos partenariats.",
+          hero_cta: "Nous Contacter",
+          scroll_hint: "Défiler pour explorer",
+          s2_ey: "À Propos",
+          s2_h: "Un Bureau d'Investissement Privé",
+          s2_sub: "Qui Nous Sommes · Activité · Gouvernance",
+          a1_h: "Qui Nous Sommes",
+          a1_p: "Un family office basé à Luxembourg dédié à la création de valeur à long terme. Nous combinons discipline institutionnelle et conviction entrepreneuriale — dans l'immobilier et le capital-risque en phase initiale.",
+          a2_h: "Domaines d'Activité",
+          a2_p: "Immobilier commercial et résidentiel en Europe et MENA. Capital-risque via l'Incubateur Ifeile. Partenariats transfrontaliers et co-investissements avec des partenaires institutionnels alignés.",
+          a3_h: "Relations & Gouvernance",
+          a3_p: "Nous construisons des relations durables avec nos partenaires et parties prenantes — guidés par une expertise locale, une gestion responsable et des principes rigoureux.",
+          s3_ey: "Philosophie d'Investissement",
+          s3_h: "Discipliné. Privé. Long Terme.",
+          s3_sub: "Notre Approche · 5 Principes Directeurs",
+          s3_p: "Notre approche intègre discipline institutionnelle et flexibilité entrepreneuriale. Nous investissons sélectivement, évaluons rigoureusement et restons engagés dans des partenariats qui perdurent.",
+          p1_h: "Gestion Conservatrice du Capital",
+          p1_p: "La préservation du capital est la première obligation. Nous évaluons les scénarios défavorables et résistons à l'endettement au-delà de ce que les fondamentaux justifient.",
+          p2_h: "Diligence Raisonnée Rigoureuse",
+          p2_p: "Chaque investissement fait l'objet d'un examen structuré et indépendant sur les dimensions juridiques, financières et opérationnelles.",
+          p3_h: "Sélection Stratégique des Marchés",
+          p3_p: "Nous nous concentrons sur les marchés où les tendances démographiques et la clarté réglementaire soutiennent des rendements durables.",
+          p4_h: "Orientation Partenariale Long Terme",
+          p4_p: "Nous recherchons des co-investisseurs et fondateurs alignés sur un capital patient. L'extraction à court terme est incompatible avec notre approche.",
+          p5_h: "Création de Valeur Durable",
+          p5_p: "Les rendements sont une conséquence d'une gestion responsable — et non son substitut. Les considérations environnementales et sociales sont intégrées dès l'évaluation.",
+          s4_ey: "Stratégie d'Investissement",
+          s4_h: "Investissements Immobiliers",
+          s4_sub: "Résidentiel · Commercial · Partenariats Stratégiques",
+          st1_h: "Immobilier Résidentiel",
+          st1_p:
+            "Multifamiliaux, développements résidentiels, rénovation urbaine et actifs générateurs de revenus sur les marchés européens et MENA.",
+          t1: "Multifamilial",
+          t2: "Rénov. Urbaine",
+          t3: "Actifs Locatifs",
+          st2_h: "Immobilier Commercial",
+          st2_p:
+            "Bureaux, logistique, commerce, hôtellerie et actifs mixtes avec une demande fondamentale solide et une qualité locative élevée.",
+          t4: "Bureaux",
+          t5: "Logistique",
+          t6: "Hôtellerie",
+          st3_h: "Partenariats Stratégiques",
+          st3_p:
+            "Structures de co-investissement avec opérateurs, promoteurs et partenaires institutionnels partageant une vision et une expertise communes.",
+          t7: "Opérateurs",
+          t8: "Promoteurs",
+          t9: "Institutionnels",
+          s5_ey: "Ifeile Incubateur",
+          s5_h: "Capital-Risque Amorçage",
+          s5_sub: "Santé · Fintech · IA · Infrastructure Numérique",
+          s5_p1:
+            "L'Incubateur Ifeile déploie un capital patient dans des entreprises en phase initiale à l'intersection de la technologie et des infrastructures réelles.",
+          s5_p2:
+            "Nous apportons accompagnement opérationnel, réseaux stratégiques et engagement à long terme — pas seulement du capital.",
+          sec1: "Technologies de Santé",
+          sec2: "Fintech & Infrastructure Financière",
+          sec3: "Solutions IA",
+          sec4: "Infrastructure Numérique",
+          sec5: "Technologies Émergentes",
+          model_l: "Notre Modèle d'Incubation",
+          mc1_h: "Capital Patient",
+          mc1_p:
+            "Des horizons d'investissement à long terme sans pression artificielle de sortie. Nous laissons le temps à la valeur réelle de se développer.",
+          mc2_h: "Accompagnement Opérationnel",
+          mc2_p:
+            "Un soutien direct d'opérateurs expérimentés ayant navigué des défis comparables dans divers secteurs.",
+          mc3_h: "Réseaux Stratégiques",
+          mc3_p:
+            "Accès à des partenaires institutionnels, opérateurs régionaux et relations d'investissement construites sur des décennies d'activité.",
+          s6_ey: "Présence Géographique",
+          s6_h: "Une Perspective Internationale",
+          s6_sub: "Europe · CCG · Afrique du Nord",
+          r1_k: "Europe Occidentale & Méridionale",
+          r1_h: "Europe",
+          r1_p: "Notre base principale d'opérations. Luxembourg comme centre financier, complété par des investissements actifs en Europe occidentale et méridionale.",
+          r2_k: "Conseil de Coopération du Golfe",
+          r2_h: "Marchés CCG",
+          r2_p: "Les flux de capitaux croissants et les investissements en infrastructure dans les marchés du Golfe créent des opportunités sélectives alignées avec notre approche.",
+          r3_k: "Corridors de Croissance",
+          r3_h: "Afrique du Nord",
+          r3_p: "La dynamique démographique et la demande en infrastructure en Afrique du Nord présentent des opportunités cohérentes avec notre thèse d'investissement.",
+          s7_ey: "Contact",
+          s7_h: "Demandes",
+          s7_sub: "Ifeile Investments · Luxembourg",
+          cd1: "Ifeile Investments S.A.",
+          cd2: "Luxembourg, Grand-Duché de Luxembourg",
+          c_note:
+            "Pour les opportunités de partenariat, les demandes d'investissement ou toute correspondance générale. Toutes les demandes sont traitées avec une stricte confidentialité.",
+          f1: "Nom Complet",
+          f2: "Organisation",
+          f3: "Adresse E-mail",
+          f4: "Nature de la Demande",
+          fo1: "Opportunité de Partenariat",
+          fo2: "Renseignement Général",
+          f5: "Message",
+          f_gdpr:
+            "Je consens à ce qu'Ifeile Investments traite mes données personnelles conformément au RGPD et à la Politique de Confidentialité.",
+          f_sub: "Envoyer",
+          fc: "© 2026 Ifeile Investments S.A. — Luxembourg",
+          fl1: "Mentions Légales",
+          fl2: "Confidentialité / RGPD",
+        },
+        de: {
+          nav_home: "Start",
+          nav_about: "Über Uns",
+          nav_phil: "Philosophie",
+          nav_strat: "Strategie",
+          nav_inc: "Inkubator",
+          nav_pres: "Präsenz",
+          nav_cont: "Kontakt",
+          s_home: "S1",
+          s_about: "S2",
+          s_phil: "S3",
+          s_strat: "S4",
+          s_inc: "S5",
+          s_pres: "S6",
+          s_cont: "S7",
+          hero_pre: "Luxemburg · Privates Investmentbüro",
+          hero_h1: "Stilles Kapital.<br><em>Beständige</em> Werte.",
+          hero_label1: "Das Büro",
+          hero_label2: "Der Ansatz",
+          hero_p1:
+            "Ein in Luxemburg ansässiges privates Investmentbüro, das diszipliniertes Immobilien-Underwriting mit selektiver Frühphasen-Überzeugung verbindet.",
+          hero_p2:
+            "Wir operieren mit Diskretion, Flexibilität und langfristiger Ausrichtung — mit starken Fundamentaldaten und Überzeugung in unseren Partnerschaften.",
+          hero_cta: "Kontakt Aufnehmen",
+          scroll_hint: "Zum Erkunden scrollen",
+          s2_ey: "Über Uns",
+          s2_h: "Ein Privates Investmentbüro",
+          s2_sub: "Wer Wir Sind · Aktivitäten · Verantwortung",
+          a1_h: "Wer Wir Sind",
+          a1_p: "Ein in Luxemburg ansässiges Family Office, das sich der langfristigen Wertschöpfung widmet. Institutionelle Disziplin verbunden mit unternehmerischer Überzeugung — in Immobilien und Frühphasen-Venture.",
+          a2_h: "Tätigkeitsbereiche",
+          a2_p: "Gewerbe- und Wohnimmobilien in Europa und MENA. Frühphasen-Venture über den Ifeile Inkubator. Grenzüberschreitende Partnerschaften mit institutionellen Partnern.",
+          a3_h: "Beziehungen & Verantwortung",
+          a3_p: "Wir pflegen vertrauensvolle, langfristige Beziehungen mit Partnern und Stakeholdern — geführt von lokaler Expertise und prinzipientreuer Kapitalverwaltung.",
+          s3_ey: "Investitionsphilosophie",
+          s3_h: "Diszipliniert. Privat. Langfristig.",
+          s3_sub: "Unser Ansatz · 5 Leitprinzipien",
+          s3_p: "Unser Ansatz verbindet institutionelle Disziplin mit unternehmerischer Flexibilität. Wir investieren selektiv, prüfen rigoros und bleiben langfristigen Partnerschaften verpflichtet.",
+          p1_h: "Konservatives Kapitalmanagement",
+          p1_p: "Kapitalerhalt ist die erste Pflicht. Wir kalkulieren Negativszenarien und vermeiden Fremdkapital über das fundamental Vertretbare hinaus.",
+          p2_h: "Rigorose Due Diligence",
+          p2_p: "Jedes Investment wird einer strukturierten, unabhängigen Prüfung in rechtlicher, finanzieller und operativer Hinsicht unterzogen.",
+          p3_h: "Strategische Marktauswahl",
+          p3_p: "Wir fokussieren auf Märkte, in denen demografische Trends und regulatorische Klarheit nachhaltige Renditen unterstützen.",
+          p4_h: "Langfristige Partnerschaft",
+          p4_p: "Wir suchen Co-Investoren und Gründer mit geduldigen Kapitalzielen. Kurzfristige Extraktion ist mit unserer Anlagestrategie unvereinbar.",
+          p5_h: "Nachhaltige Wertschöpfung",
+          p5_p: "Renditen sind eine Folge verantwortungsvollen Eigentums — nicht dessen Ersatz. Ökologische Aspekte werden von Beginn an integriert.",
+          s4_ey: "Investitionsstrategie",
+          s4_h: "Immobilieninvestitionen",
+          s4_sub: "Wohnen · Gewerbe · Strategische Partnerschaften",
+          st1_h: "Wohnimmobilien",
+          st1_p:
+            "Mehrfamilienhäuser, Wohnentwicklungen, Stadterneuerung und einkommensgenerierende Anlagen in Europa und MENA.",
+          t1: "Mehrfamilienhaus",
+          t2: "Stadterneuerung",
+          t3: "Mietrendite",
+          st2_h: "Gewerbeimmobilien",
+          st2_p:
+            "Büros, Logistik, Einzelhandel, Gastronomie und Mixed-Use-Objekte mit starker Fundamentalnachfrage.",
+          t4: "Büro",
+          t5: "Logistik",
+          t6: "Gastgewerbe",
+          st3_h: "Strategische Partnerschaften",
+          st3_p:
+            "Co-Investitionsstrukturen mit Betreibern, Entwicklern und institutionellen Partnern, bei denen Anreize und Expertise übereinstimmen.",
+          t7: "Betreiber",
+          t8: "Entwickler",
+          t9: "Institutionell",
+          s5_ey: "Ifeile Inkubator",
+          s5_h: "Frühphasen-Venture",
+          s5_sub: "Gesundheit · Fintech · KI · Digitale Infrastruktur",
+          s5_p1:
+            "Der Ifeile Inkubator setzt geduldiges Kapital in Frühphasenunternehmen an der Schnittstelle von Technologie und realer Infrastruktur ein.",
+          s5_p2:
+            "Wir ergänzen Investitionen durch operative Begleitung und strategische Netzwerke — nicht nur Kapital.",
+          sec1: "Health-Tech",
+          sec2: "Fintech & Finanzinfrastruktur",
+          sec3: "KI-Lösungen",
+          sec4: "Digitale Infrastruktur",
+          sec5: "Emerging Tech",
+          model_l: "Unser Inkubationsmodell",
+          mc1_h: "Geduldiges Kapital",
+          mc1_p:
+            "Langfristige Investitionshorizonte ohne künstlichen Exitdruck. Wir lassen echten Mehrwert entstehen.",
+          mc2_h: "Operative Begleitung",
+          mc2_p:
+            "Direkte Unterstützung durch erfahrene Betreiber mit vergleichbarer Erfahrung über Sektoren hinweg.",
+          mc3_h: "Strategische Netzwerke",
+          mc3_p:
+            "Zugang zu institutionellen Partnern und Investitionsbeziehungen, die über Jahrzehnte aufgebaut wurden.",
+          s6_ey: "Geografische Präsenz",
+          s6_h: "Eine Internationale Perspektive",
+          s6_sub: "Europa · GCC · Nordafrika",
+          r1_k: "West- & Südeuropa",
+          r1_h: "Europa",
+          r1_p: "Unser primäres Operationsgebiet. Luxemburg als Finanzzentrum, ergänzt durch aktive Investitionen auf west- und südeuropäischen Immobilienmärkten.",
+          r2_k: "Golfkooperationsrat",
+          r2_h: "GCC-Märkte",
+          r2_p: "Wachsende Kapitalflüsse und Infrastrukturinvestitionen in Golfmärkten schaffen selektive Chancen im Einklang mit unserem langfristigen Ansatz.",
+          r3_k: "Wachstumskorridore",
+          r3_h: "Nordafrika",
+          r3_p: "Demografischer Schwung und Infrastrukturnachfrage in nordafrikanischen Korridoren bieten Frühphasenchancen, die mit unserer Investitionsthese konsistent sind.",
+          s7_ey: "Kontakt",
+          s7_h: "Anfragen",
+          s7_sub: "Ifeile Investments · Luxemburg",
+          cd1: "Ifeile Investments S.A.",
+          cd2: "Luxemburg, Großherzogtum Luxemburg",
+          c_note:
+            "Für Partnerschaftsmöglichkeiten, Investitionsanfragen oder allgemeinen Schriftverkehr. Alle Anfragen werden streng vertraulich behandelt.",
+          f1: "Vollständiger Name",
+          f2: "Organisation",
+          f3: "E-Mail-Adresse",
+          f4: "Art der Anfrage",
+          fo1: "Partnerschaftsmöglichkeit",
+          fo2: "Allgemeine Anfrage",
+          f5: "Nachricht",
+          f_gdpr:
+            "Ich stimme zu, dass Ifeile Investments meine persönlichen Daten gemäß DSGVO und der Datenschutzrichtlinie verarbeitet.",
+          f_sub: "Anfrage Senden",
+          fc: "© 2026 Ifeile Investments S.A. — Luxemburg",
+          fl1: "Impressum",
+          fl2: "Datenschutz / DSGVO",
+        },
+      };
+
+      let lang = "en";
+
+      function apply(l) {
+        lang = l;
+        const d = T[l];
+        document.querySelectorAll("[data-n]").forEach((el) => {
+          const k = el.getAttribute("data-n");
+          if (d[k] !== undefined) el.innerHTML = d[k];
+        });
+        document.querySelectorAll("[data-n-o]").forEach((el) => {
+          const k = el.getAttribute("data-n-o");
+          if (d[k] !== undefined) el.textContent = d[k];
+        });
+        document
+          .querySelectorAll(".lang")
+          .forEach((b) => b.classList.toggle("on", b.dataset.l === l));
+        document.documentElement.lang = l;
+      }
+
+      document
+        .querySelectorAll(".lang")
+        .forEach((b) => b.addEventListener("click", () => apply(b.dataset.l)));
+
+      const burger = document.getElementById("burger");
+      const nav = document.getElementById("nav");
+      burger.addEventListener("click", () => nav.classList.toggle("open"));
+      nav
+        .querySelectorAll("a")
+        .forEach((a) =>
+          a.addEventListener("click", () => nav.classList.remove("open")),
+        );
+
+      window.addEventListener("scroll", () => {
+        const y = window.scrollY + 80;
+        let cur = "";
+        document.querySelectorAll("section[id]").forEach((s) => {
+          if (s.offsetTop <= y) cur = s.id;
+        });
+        document
+          .querySelectorAll("nav a")
+          .forEach((a) =>
+            a.classList.toggle("on", a.getAttribute("href") === "#" + cur),
+          );
+      });
+
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.07 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+
+      function doSubmit(e) {
+        e.preventDefault();
+        const t = document.getElementById("toast");
+        t.style.opacity = "1";
+        t.style.transform = "translateX(-50%) translateY(0)";
+        setTimeout(() => {
+          t.style.opacity = "0";
+          t.style.transform = "translateX(-50%) translateY(20px)";
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
